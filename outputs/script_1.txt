@@ -1,1 +1,31 @@
-{'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+**Script for Viral YouTube Shorts: AI Future Shocking Facts**
+
+**Title: "AI is Taking Over - What You Need to Know!"**
+
+**Shot 1: Hook**
+(0s-3s)
+(Ominous music starts. A futuristic cityscape appears in the background.)
+Narrator: "Imagine a world where AI surpasses human intelligence... and takes control!"
+
+**Shot 2: Fact 1**
+(4s-12s)
+(Visuals of AI robots and machines working)
+Narrator: "By 2030, AI will replace over 75% of all jobs!"
+
+**Shot 3: Fact 2**
+(13s-20s)
+(Visuals of a person's brain being scanned)
+Narrator: "AI can soon read minds, predicting your thoughts!"
+
+**Shot 4: Fact 3**
+(21s-28s)
+(Visuals of AI-powered self-driving cars)
+Narrator: "AI cars will be on the road, with no human driver needed!"
+
+**Shot 5: Loop Ending**
+(29s-35s)
+(Visuals of a cityscape at night)
+Narrator: "The AI future is coming... are you ready?"
+(Loop: Repeat the entire script, with slight variations, to keep the audience engaged.)
+
+**Caption:** "AI future shocking facts! Can AI take over our world? Watch till the end to find out! #AIFuture #Tech #Shockinfacts"

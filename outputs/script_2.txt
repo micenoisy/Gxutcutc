@@ -1,1 +1,30 @@
-{'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+**Viral YouTube Shorts Script: Dark Psychology Trick**
+
+**(0-5 seconds)**
+
+**[Hook]**
+"You won't believe the simple trick that can make anyone do what you want... "
+
+**(5-10 seconds)**
+
+"Imagine being able to get what you want, whenever you want it, from anyone. Sounds like a dream, right? But it's real, and it's ridiculously easy to do."
+
+**(10-20 seconds)**
+
+"It's called mirroring. When you subtly imitate someone's body language, they start to feel like they're in control. And when they think they're in control, they let their guard down and do exactly what you want."
+
+**(20-30 seconds)**
+
+"So next time you want to get something from someone, try mirroring their body language. Use the same gestures, the same tone of voice. Watch as they start to nod like a puppet on a string."
+
+**(30-50 seconds)**
+
+"It's not manipulation, it's just psychology. And it's crazy effective."
+
+**(50-60 seconds)**
+
+**[Loop]**
+"Now, try it with me... mirror my movements..."
+
+**(Caption)**
+"Mind. Blown. #DarkPsychology #Mirroring #PsychologyTricks"
