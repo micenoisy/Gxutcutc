@@ -8,11 +8,11 @@ MODEL = "google/flan-t5-large"
 HEADERS = {"Authorization": f"Bearer {API_KEY}"}
 
 PROMPT_TEMPLATE = """
-Generate a viral YouTube Shorts script on dark physiology.
+Generate a viral YouTube Shorts script.
 
 Requirements:
 - Hook in first line
-- Max 1200 words and minimum 100 words
+- Max 120 words
 - High retention storytelling
 - Loop ending
 - Include caption line
@@ -29,7 +29,7 @@ TOPICS = [
 def generate_script(topic):
     prompt = PROMPT_TEMPLATE.format(topic=topic)
 
-    for _ in range(1):
+    for _ in range(3):
         response = requests.post(
             f"https://api-inference.huggingface.co/models/{MODEL}",
             headers=HEADERS,
@@ -57,17 +57,7 @@ def save_script(text, index):
         f.write(text)
 
 
-def commit_outputs():
-    os.system("git config --global user.name 'github-actions'")
-    os.system("git config --global user.email 'actions@github.com'")
-    os.system("git add outputs/")
-    os.system("git commit -m 'Auto-generated scripts'")
-    os.system("git push")
-
-
 if __name__ == "__main__":
     for i, topic in enumerate(TOPICS, start=1):
         script = generate_script(topic)
         save_script(script, i)
-
-    commit_outputs()
