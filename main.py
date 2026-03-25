@@ -48,6 +48,14 @@ def save_script(text, index):
         f.write(text)
 
 
+def commit_outputs():
+    os.system("git config --global user.name 'github-actions'")
+    os.system("git config --global user.email 'actions@github.com'")
+    os.system("git add outputs/")
+    os.system("git commit -m 'Auto-generated scripts'")
+    os.system("git push")
+
+
 if __name__ == "__main__":
     print("Generating scripts...")
 
@@ -56,3 +64,5 @@ if __name__ == "__main__":
         save_script(script, i)
 
     print("Done. Scripts saved in /outputs")
+
+    commit_outputs()
