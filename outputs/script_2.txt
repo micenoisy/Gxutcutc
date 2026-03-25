@@ -1,1 +1,1 @@
-Error generating script
+FAILED
