@@ -1,24 +1,14 @@
 import requests
 import os
-import time
 
-API_KEY = os.getenv("HUGGINGFACE_API_KEY")
-MODEL = "google/flan-t5-large"
+API_KEY = os.getenv("GROQ_API_KEY")
 
-HEADERS = {"Authorization": f"Bearer {API_KEY}"}
+URL = "https://api.groq.com/openai/v1/chat/completions"
 
-PROMPT_TEMPLATE = """
-Generate a viral YouTube Shorts script.
-
-Requirements:
-- Hook in first line
-- Max 120 words
-- High retention storytelling
-- Loop ending
-- Include caption line
-
-Topic: {topic}
-"""
+HEADERS = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
 
 TOPICS = [
     "AI future shocking facts",
@@ -27,28 +17,32 @@ TOPICS = [
 ]
 
 def generate_script(topic):
-    prompt = PROMPT_TEMPLATE.format(topic=topic)
+    prompt = f"""
+    Create a viral YouTube Shorts script.
 
-    for _ in range(3):
-        response = requests.post(
-            f"https://api-inference.huggingface.co/models/{MODEL}",
-            headers=HEADERS,
-            json={"inputs": prompt}
-        )
+    Topic: {topic}
 
-        try:
-            data = response.json()
+    Rules:
+    - Strong hook in first line
+    - Max 100 words
+    - Loop ending
+    - Add caption at end
+    """
 
-            if isinstance(data, dict) and "error" in data:
-                time.sleep(10)
-                continue
+    data = {
+        "model": "llama3-8b-8192",
+        "messages": [
+            {"role": "user", "content": prompt}
+        ]
+    }
 
-            return data[0]["generated_text"]
+    response = requests.post(URL, headers=HEADERS, json=data)
+    result = response.json()
 
-        except:
-            return "FAILED"
-
-    return "FAILED"
+    try:
+        return result["choices"][0]["message"]["content"]
+    except:
+        return str(result)
 
 
 def save_script(text, index):
