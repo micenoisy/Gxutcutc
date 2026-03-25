@@ -11,22 +11,22 @@ HEADERS = {
 }
 
 TOPICS = [
-    "AI future shocking facts",
     "dark psychology trick",
     "mind blowing history mystery"
 ]
 
 def generate_script(topic):
     prompt = f"""
-    Create a viral YouTube Shorts script.
+    Create a viral YouTube Shorts dark physiology script.
 
     Topic: {topic}
 
     Rules:
     - Strong hook in first line
-    - Max 100 words
+    - Max 1000 words
+    storytelling video acript without timestamp or any else unnecessary texts, just give a oerfect script that start and end connected for loop playing
     - Loop ending
-    - Add caption at end
+    - Add caption in all video that match my full acript measn whenever audiance seen this caltion they will understand the meaning and amin motive of that bideo
     """
 
     data = {
