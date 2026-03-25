@@ -1,18 +1,18 @@
 import requests
 import os
-from datetime import datetime
+import time
 
 API_KEY = os.getenv("HUGGINGFACE_API_KEY")
-MODEL = "tiiuae/falcon-7b-instruct"
+MODEL = "google/flan-t5-large"
 
 HEADERS = {"Authorization": f"Bearer {API_KEY}"}
 
 PROMPT_TEMPLATE = """
-Generate a viral YouTube Shorts script.
+Generate a viral YouTube Shorts script on dark physiology.
 
 Requirements:
 - Hook in first line
-- Max 120 words
+- Max 12000 words and minimum 1000 words
 - High retention storytelling
 - Loop ending
 - Include caption line
@@ -26,20 +26,29 @@ TOPICS = [
     "mind blowing history mystery"
 ]
 
-
 def generate_script(topic):
     prompt = PROMPT_TEMPLATE.format(topic=topic)
 
-    response = requests.post(
-        f"https://api-inference.huggingface.co/models/{MODEL}",
-        headers=HEADERS,
-        json={"inputs": prompt}
-    )
+    for _ in range(1):
+        response = requests.post(
+            f"https://api-inference.huggingface.co/models/{MODEL}",
+            headers=HEADERS,
+            json={"inputs": prompt}
+        )
 
-    try:
-        return response.json()[0]["generated_text"]
-    except:
-        return "Error generating script"
+        try:
+            data = response.json()
+
+            if isinstance(data, dict) and "error" in data:
+                time.sleep(10)
+                continue
+
+            return data[0]["generated_text"]
+
+        except:
+            return "FAILED"
+
+    return "FAILED"
 
 
 def save_script(text, index):
@@ -57,12 +66,8 @@ def commit_outputs():
 
 
 if __name__ == "__main__":
-    print("Generating scripts...")
-
     for i, topic in enumerate(TOPICS, start=1):
         script = generate_script(topic)
         save_script(script, i)
-
-    print("Done. Scripts saved in /outputs")
 
     commit_outputs()
