@@ -12,7 +12,7 @@ Generate a viral YouTube Shorts script on dark physiology.
 
 Requirements:
 - Hook in first line
-- Max 12000 words and minimum 1000 words
+- Max 1200 words and minimum 100 words
 - High retention storytelling
 - Loop ending
 - Include caption line
