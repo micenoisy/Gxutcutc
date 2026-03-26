@@ -1,21 +1,47 @@
 [
   {
-    "original_file": "Clavicular Clubs.mp4",
-    "video_url": "https://drive.google.com/file/d/1j37dGLlzit48khDJv-qBe1v6f74zf8pl/view?usp=drivesdk", 
-    "new_title": "He_Cried_Over_Cheese_valitypoly.mp4",
-    "frame_config": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2", 
+    "original_file": "maxwell_conspiracy.mp4",
+    "gdrive_url": "", 
+    "new_title": "Joe_Rogan_Maxwell_Prison_Interview_#viralitypoly_#conspiracy_#joerogan.mp4",
+    "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2", 
     "segments": [
-      { "start": "00:00:1.500", "end": "00:00:11.000" },
-      { "start": "00:00:11.000", "end": "00:00:18.000" },
-      { "start": "00:00:18.000", "end": "00:00:32.500" }
+      { "start": "00:00:23.000", "end": "00:00:34.500", "label": "HOOK_ROGAN_CELL" },
+      { "start": "00:00:00.000", "end": "00:00:15.000", "label": "STORY_REVEAL" }
     ],
     "captions": [
-      { "start": "0.5", "end": "3.5", "text": "HE CRIED OVER CHEESE?! 🧀" },
-      { "start": "4.0", "end": "6.0", "text": "POLYMARKET IS CRAZY 📈" },
-      { "start": "7.0", "end": "10.0", "text": "56% CHANCE TO CRY 😭" },
-      { "start": "12.0", "end": "16.0", "text": "30-DAY NON-STOP STREAM! ⏰" },
-      { "start": "20.0", "end": "25.0", "text": "$5,000 BET = $4,400 PROFIT? 💸" },
-      { "start": "27.0", "end": "32.0", "text": "HOW IS THIS NOT FREE? 🤔" }
+      { "start": "0.5", "end": "3.5", "text": "SEND JOE ROGAN TO HER CELL? 🎙️" },
+      { "start": "4.0", "end": "7.0", "text": "SHE KNOWS EVERYTHING... 🤫" },
+      { "start": "8.5", "end": "11.0", "text": "WHY NO INTERVIEW? 🤔" }
+    ]
+  },
+  {
+    "original_file": "gorlock_mogging.mp4",
+    "gdrive_url": "",
+    "new_title": "Gorlock_The_Destroyer_Frame_Mogging_#viralitypoly_#gorlock_#streamer_clips.mp4",
+    "frame_filter": "crop=w=ih*9/16:h=ih:x=iw/2-ow/2", 
+    "segments": [
+      { "start": "00:00:14.500", "end": "00:00:21.000", "label": "HOOK_GORLOCK" },
+      { "start": "00:00:30.000", "end": "00:00:54.000", "label": "BETTING_MATH" }
+    ],
+    "captions": [
+      { "start": "0.5", "end": "3.0", "text": "SHE IS FRAME MOGGING 😱" },
+      { "start": "3.5", "end": "6.5", "text": "GORLOCK THE DESTROYER 👑" },
+      { "start": "7.5", "end": "12.0", "text": "EASY $2,800 PROFIT? 💸" }
+    ]
+  },
+  {
+    "original_file": "prince_andrew_files.mp4",
+    "gdrive_url": "",
+    "new_title": "Prince_Andrew_Lizard_People_Exposed_#viralitypoly_#lizardpeople_#illuminati.mp4",
+    "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2", 
+    "segments": [
+      { "start": "00:00:26.500", "end": "00:00:35.000", "label": "HOOK_LIZARD_PEOPLE" },
+      { "start": "00:00:03.000", "end": "00:00:18.000", "label": "PRISON_BET" }
+    ],
+    "captions": [
+      { "start": "0.5", "end": "3.5", "text": "LIZARD PEOPLE RUN THE WORLD? 🦎" },
+      { "start": "4.0", "end": "7.0", "text": "PRISON ODDS ARE 11% 🏰" },
+      { "start": "8.0", "end": "12.0", "text": "THE EPSTEIN FILES ARE DEEP 📁" }
     ]
   }
 ]
