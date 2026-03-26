@@ -1,25 +1,13 @@
 [
   {
-    "original_file": "clavicular Crying.mp4",
-    "video_url": "https://drive.google.com/uc?export=download&id=1A2B3C4D5E", 
+    "original_file": "Clavicular Crying.mp4",
+    "gdrive_folder_url": "https://drive.google.com/drive/folders/1T7hs7CeYLOTQRLqXd2BFdY3yIJVjWHLU",
     "new_title": "He_Cried_Over_Cheese_viralitypoly.mp4",
     "frame_config": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2", 
     "segments": [
-      {
-        "start": "00:00:26.500",
-        "end": "00:00:32.500",
-        "label": "HOOK_CHEESE_CRY"
-      },
-      {
-        "start": "00:00:11.000",
-        "end": "00:00:24.000",
-        "label": "STORY_REVEAL_ODDS"
-      },
-      {
-        "start": "00:00:43.000",
-        "end": "00:00:56.500",
-        "label": "PROFIT_CALCULATION"
-      }
+      { "start": "00:00:26.500", "end": "00:00:32.500" },
+      { "start": "00:00:11.000", "end": "00:00:24.000" },
+      { "start": "00:00:43.000", "end": "00:00:56.500" }
     ],
     "captions": [
       { "start": "0.5", "end": "3.5", "text": "HE CRIED OVER CHEESE?! 🧀" },
