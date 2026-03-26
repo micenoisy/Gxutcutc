@@ -1,4 +1,4 @@
-name: AI Video Agent - Auto Trim & Caption
+name: AI Video Agent - Whisper + Auto Trim
 on:
   push:
     paths:
@@ -8,23 +8,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Allows the agent to save videos back to the repo
+      contents: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install FFmpeg & Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg
+          pip install openai-whisper moviepy
 
       - name: Process Videos
         run: python3 scripts/processor.py
 
-      - name: Commit and Push Finished Videos
+      - name: Commit and Push
         run: |
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Processed viral videos with #viralitypoly" || echo "No changes to commit"
+          git commit -m "Processed with Whisper AI #viralitypoly" || echo "No changes"
           git push
