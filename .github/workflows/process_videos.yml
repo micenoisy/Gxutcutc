@@ -1,4 +1,4 @@
-name: AI Video Agent - Final Download Fix
+name: AI Video Agent - GDrive Folder + Super Cache
 on:
   push:
     paths:
@@ -12,18 +12,25 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-          lfs: true
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          cache: 'pip'
+          cache: 'pip' # Automated caching for pip
 
-      - name: Install Dependencies
+      - name: Cache Whisper Model
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/whisper
+          key: whisper-base-v2
+
+      - name: Install System Dependencies
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install Python Libraries
+        run: |
           pip install -r requirements.txt
 
       - name: Process Videos
@@ -34,5 +41,5 @@ jobs:
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Viral Video Processed #viralitypoly" || echo "No changes"
+          git commit -m "Viral batch processed #viralitypoly" || echo "No changes"
           git push
