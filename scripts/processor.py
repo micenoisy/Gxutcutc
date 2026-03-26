@@ -1,12 +1,5 @@
 import json, subprocess, os, whisper, gdown
 
-def download_gdrive_folder(url):
-    if not url: return
-    print(f"📡 Syncing Google Drive Folder: {url}")
-    # This downloads the entire folder into 'input/'
-    # Note: Folder must be set to "Anyone with the link can view"
-    gdown.download_folder(url, output="input/", quiet=False, use_cookies=False)
-
 def find_file_case_insensitive(directory, filename):
     if not os.path.exists(directory): return None
     target = filename.lower().strip()
@@ -15,7 +8,18 @@ def find_file_case_insensitive(directory, filename):
             return os.path.join(directory, f)
     return None
 
-print("🚀 Loading Whisper AI...")
+def download_specific_file(url, target_name):
+    print(f"📡 File not found locally. Downloading from Google Drive: {target_name}...")
+    try:
+        # Downloads specific file and renames it to match your JSON
+        output_path = f"input/{target_name}"
+        gdown.download(url, output=output_path, quiet=False, fuzzy=True)
+        return output_path
+    except Exception as e:
+        print(f"❌ DOWNLOAD ERROR: Could not download {target_name}. Error: {e}")
+        return None
+
+print("🚀 Loading Whisper AI (Cached version)...")
 model = whisper.load_model("base")
 
 with open('master_config.json') as f:
@@ -24,23 +28,34 @@ with open('master_config.json') as f:
 os.makedirs("output", exist_ok=True)
 os.makedirs("input", exist_ok=True)
 
-# 1. First, download files from the folder if a URL is provided in the first job
-if jobs and "gdrive_folder_url" in jobs[0] and jobs[0]["gdrive_folder_url"]:
-    download_gdrive_folder(jobs[0]["gdrive_folder_url"])
-
 for job in jobs:
-    input_path = find_file_case_insensitive("input/", job['original_file'])
+    target_name = job['original_file']
     
+    # STEP 1: Search locally in input/ folder
+    input_path = find_file_case_insensitive("input/", target_name)
+    
+    # STEP 2: If not found, download from GDrive
+    if not input_path:
+        if "gdrive_url" in job and job["gdrive_url"]:
+            input_path = download_specific_file(job["gdrive_url"], target_name)
+        else:
+            print(f"❌ ERROR: {target_name} not found locally and no Google Drive link provided.")
+            continue
+
+    # STEP 3: Final validation of file
     if not input_path or os.path.getsize(input_path) < 100000:
-        print(f"❌ ERROR: {job['original_file']} not found or file is a corrupted link.")
+        print(f"❌ ERROR: {target_name} is missing or corrupted (File too small).")
         continue
 
-    print(f"🎬 Processing: {input_path}")
+    print(f"✅ Processing: {input_path}")
     
-    # 2. Whisper Transcription (Perfect Timing)
-    result = model.transcribe(input_path)
+    # 4. Transcription & Timing
+    try:
+        result = model.transcribe(input_path)
+    except Exception as e:
+        print(f"❌ WHISPER ERROR on {target_name}: {e}"); continue
     
-    # 3. Trim and Reframe (9:16 Vertical)
+    # 5. Segmenting & 9:16 Vertical Reframing
     segment_files = []
     durations = []
     for i, seg in enumerate(job['segments']):
@@ -56,7 +71,7 @@ for job in jobs:
             durations.append(float(prob))
             segment_files.append(temp_seg)
 
-    # 4. Concatenate segments (Hook First)
+    # 6. Stitching & Timeline Captioning
     if not segment_files: continue
     with open("list.txt", "w") as f:
         for s in segment_files: f.write(f"file '{s}'\n")
@@ -64,10 +79,8 @@ for job in jobs:
     combined = "combined.mp4"
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "list.txt", "-c", "copy", combined])
 
-    # 5. Build Timed Captions
     cap_filters = []
-    current_offset = 0.0
-    # Use manual captions if they exist, otherwise use Whisper auto-captions
+    # If JSON has captions, use them. Else, use Whisper auto-captions.
     source_caps = job.get('captions', [])
     if source_caps:
         for c in source_caps:
@@ -78,13 +91,12 @@ for job in jobs:
             txt = s['text'].replace("'", "").strip().upper()
             cap_filters.append(f"drawtext=text='{txt}':enable='between(t,{s['start']},{s['end']})':fontcolor=yellow:fontsize=40:x=(w-text_w)/2:y=h-160:borderw=2:bordercolor=black")
 
-    # 6. Final Export
     final_output = f"output/{job['new_title']}"
-    subprocess.run(["ffmpeg", "-y", "-i", combined, "-vf", ",".join(cap_filters[:70]), "-c:a", "copy", final_output])
+    subprocess.run(["ffmpeg", "-y", "-i", combined, "-vf", ",".join(cap_filters[:75]), "-c:a", "copy", final_output])
 
     # Cleanup
     for s in segment_files: os.remove(s)
     if os.path.exists("list.txt"): os.remove("list.txt")
     if os.path.exists("combined.mp4"): os.remove("combined.mp4")
 
-print("✅ Batch complete. Check output folder!")
+print(f"🚀 Job for {job['new_title']} finished successfully! #viralitypoly")
