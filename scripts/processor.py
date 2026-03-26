@@ -114,6 +114,50 @@ for task_idx, job in enumerate(jobs):
         if os.path.exists(s): os.remove(s)
     os.remove(list_file); os.remove(combined)
 
+print("🚀 ALL DONE! #viralitypoly")        continue 
+
+    # 2. Transcribe the FIRST segment to get speech data (Fastest for 1.5hr videos)
+    print(f"🎙️ Transcribing segment 0 for captions...")
+    result = model.transcribe(raw_segments[0])
+    
+    # 3. Final Reframe & Edit
+    processed_segments = []
+    durations = []
+    raw_filter = job.get('frame_filter', "crop=w=ih*9/16:h=ih:x=(iw-ow)/2")
+    
+    for i, raw_seg in enumerate(raw_segments):
+        final_seg = f"t{task_idx}_final_s{i}.mp4"
+        # Reframing
+        vf = f"{raw_filter},fps=30,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920"
+        subprocess.run(["ffmpeg", "-y", "-i", raw_seg, "-vf", vf, "-c:v", "libx264", "-crf", "18", final_seg])
+        
+        if os.path.exists(final_seg):
+            prob = subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", final_seg])
+            durations.append(float(prob))
+            processed_segments.append(final_seg)
+
+    # 4. Join and Apply Captions
+    if not processed_segments: continue
+    list_file = f"list_{task_idx}.txt"
+    with open(list_file, "w") as f:
+        for s in processed_segments: f.write(f"file '{s}'\n")
+    
+    combined = f"combined_{task_idx}.mp4"
+    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", list_file, "-c", "copy", combined])
+
+    cap_filters = []
+    for c in job.get('captions', []):
+        txt = c['text'].replace("'", "").strip().upper()
+        cap_filters.append(f"drawtext=text='{txt}':enable='between(t,{c['start']},{c['end']})':fontcolor=yellow:fontsize=50:x=(w-text_w)/2:y=h-300:borderw=3:bordercolor=black")
+
+    final_output = f"output/{job['new_title']}"
+    subprocess.run(["ffmpeg", "-y", "-i", combined, "-vf", ",".join(cap_filters[:70]), "-c:a", "copy", final_output])
+
+    # Cleanup
+    for s in raw_segments + processed_segments: 
+        if os.path.exists(s): os.remove(s)
+    os.remove(list_file); os.remove(combined)
+
 print("🚀 ALL DONE! #viralitypoly")    if not input_path or not os.path.exists(input_path):
         print(f"❌ Skipping {target_name}: File not available."); continue
 
