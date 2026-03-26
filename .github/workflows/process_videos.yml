@@ -1,0 +1,30 @@
+name: AI Video Agent - Auto Trim & Caption
+on:
+  push:
+    paths:
+      - 'master_config.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Allows the agent to save videos back to the repo
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install FFmpeg & Python
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Process Videos
+        run: python3 scripts/processor.py
+
+      - name: Commit and Push Finished Videos
+        run: |
+          git config --global user.name "AI-Video-Agent"
+          git config --global user.email "agent@github.com"
+          git add output/
+          git commit -m "Processed viral videos with #viralitypoly" || echo "No changes to commit"
+          git push
