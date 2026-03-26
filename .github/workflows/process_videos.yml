@@ -1,4 +1,4 @@
-name: AI Video Agent - Fast Cache + LFS Fix
+name: AI Video Agent - Final Stable Fix
 on:
   push:
     paths:
@@ -13,27 +13,27 @@ jobs:
       - name: Checkout Code (with LFS for Videos)
         uses: actions/checkout@v3
         with:
-          lfs: true # <--- THIS FIXES THE "INVALID DATA" ERROR
+          lfs: true
 
       - name: Checkout LFS objects
-        run: git lfs pull # Ensures the actual video data is downloaded
+        run: git lfs pull
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          cache: 'pip' # Built-in python caching
+          cache: 'pip' # This will now work because of requirements.txt
 
       - name: Cache Whisper Model
         uses: actions/cache@v3
         with:
           path: ~/.cache/whisper
-          key: whisper-base-model
+          key: whisper-base-v1
 
       - name: Install Dependencies
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg
-          pip install openai-whisper moviepy
+          pip install -r requirements.txt
 
       - name: Process Videos
         run: python3 scripts/processor.py
@@ -43,5 +43,5 @@ jobs:
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Processed video #viralitypoly" || echo "No changes"
+          git commit -m "Processed batch #viralitypoly" || echo "No changes"
           git push
