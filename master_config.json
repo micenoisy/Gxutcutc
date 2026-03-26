@@ -1,7 +1,8 @@
 [
   {
     "original_file": "clavicular Crying.mp4",
-    "new_title": "He_Cried_Over_Ceshje_viralitypoly.mp4",
+    "video_url": "https://drive.google.com/file/d/1SD6xt0L_yYTg9ibOizyocvdF9K7A6ZyZ/view?usp=drivesdk", 
+    "new_title": "He_Cried_Over_Cheese_viralitypoly.mp4",
     "frame_config": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2", 
     "segments": [
       {
@@ -22,7 +23,7 @@
     ],
     "captions": [
       { "start": "0.5", "end": "3.5", "text": "HE CRIED OVER CHEESE?! 🧀" },
-      { "start": "4.0", "end": "6.0", "text": "POLYMARKET IS WILD 📈" },
+      { "start": "4.0", "end": "6.0", "text": "POLYMARKET IS CRAZY 📈" },
       { "start": "7.0", "end": "10.0", "text": "56% CHANCE TO CRY 😭" },
       { "start": "12.0", "end": "16.0", "text": "30-DAY NON-STOP STREAM! ⏰" },
       { "start": "20.0", "end": "25.0", "text": "$5,000 BET = $4,400 PROFIT? 💸" },
