@@ -9,14 +9,17 @@ def find_file_case_insensitive(directory, filename):
     return None
 
 def download_specific_file(url, target_name):
-    print(f"📡 File not found locally. Downloading from Google Drive: {target_name}...")
+    print(f"📡 Downloading from Google Drive: {target_name}...")
     try:
-        # Downloads specific file and renames it to match your JSON
         output_path = f"input/{target_name}"
+        # fuzzy=True helps gdown find the file ID from a standard sharing link
         gdown.download(url, output=output_path, quiet=False, fuzzy=True)
-        return output_path
+        if os.path.exists(output_path) and os.path.getsize(output_path) > 1000:
+            return output_path
+        else:
+            return None
     except Exception as e:
-        print(f"❌ DOWNLOAD ERROR: Could not download {target_name}. Error: {e}")
+        print(f"❌ DOWNLOAD ERROR: {e}")
         return None
 
 print("🚀 Loading Whisper AI (Cached version)...")
@@ -30,32 +33,34 @@ os.makedirs("input", exist_ok=True)
 
 for job in jobs:
     target_name = job['original_file']
+    # Check for any possible link key
+    link = job.get("gdrive_url") or job.get("video_url") or job.get("url")
     
-    # STEP 1: Search locally in input/ folder
+    # STEP 1: Search locally
     input_path = find_file_case_insensitive("input/", target_name)
     
-    # STEP 2: If not found, download from GDrive
-    if not input_path:
-        if "gdrive_url" in job and job["gdrive_url"]:
-            input_path = download_specific_file(job["gdrive_url"], target_name)
+    # STEP 2: If not found locally, try downloading
+    if not input_path or not os.path.exists(input_path):
+        if link:
+            input_path = download_specific_file(link, target_name)
         else:
-            print(f"❌ ERROR: {target_name} not found locally and no Google Drive link provided.")
+            print(f"❌ ERROR: {target_name} not found and NO LINK provided in JSON.")
             continue
 
-    # STEP 3: Final validation of file
-    if not input_path or os.path.getsize(input_path) < 100000:
-        print(f"❌ ERROR: {target_name} is missing or corrupted (File too small).")
+    # STEP 3: Validate file existence and size
+    if not input_path or not os.path.exists(input_path) or os.path.getsize(input_path) < 100000:
+        print(f"❌ ERROR: File {target_name} is missing or download failed.")
         continue
 
     print(f"✅ Processing: {input_path}")
     
-    # 4. Transcription & Timing
+    # 4. Transcription
     try:
         result = model.transcribe(input_path)
     except Exception as e:
-        print(f"❌ WHISPER ERROR on {target_name}: {e}"); continue
+        print(f"❌ WHISPER ERROR: {e}"); continue
     
-    # 5. Segmenting & 9:16 Vertical Reframing
+    # 5. Segmenting & Vertical Reframe
     segment_files = []
     durations = []
     for i, seg in enumerate(job['segments']):
@@ -71,8 +76,11 @@ for job in jobs:
             durations.append(float(prob))
             segment_files.append(temp_seg)
 
-    # 6. Stitching & Timeline Captioning
-    if not segment_files: continue
+    # 6. Stitching & Captioning
+    if not segment_files: 
+        print(f"❌ ERROR: No segments were created for {target_name}")
+        continue
+
     with open("list.txt", "w") as f:
         for s in segment_files: f.write(f"file '{s}'\n")
     
@@ -80,7 +88,6 @@ for job in jobs:
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "list.txt", "-c", "copy", combined])
 
     cap_filters = []
-    # If JSON has captions, use them. Else, use Whisper auto-captions.
     source_caps = job.get('captions', [])
     if source_caps:
         for c in source_caps:
@@ -98,5 +105,6 @@ for job in jobs:
     for s in segment_files: os.remove(s)
     if os.path.exists("list.txt"): os.remove("list.txt")
     if os.path.exists("combined.mp4"): os.remove("combined.mp4")
+    print(f"🚀 FINISHED: {job['new_title']} #viralitypoly")
 
-print(f"🚀 Job for {job['new_title']} finished successfully! #viralitypoly")
+print("✨ All jobs completed.")
