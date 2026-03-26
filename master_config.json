@@ -1,15 +1,32 @@
 [
   {
-    "original_file": "Clavicular Crying.mp4",
-    "new_title": "He_Cried_Over_Cheese_viralitypoly_whop_betting.mp4",
-    "frame_config": "crop=w=ih*9/16:h=ih:x=iw/4", 
+    "original_file": "clavicular_video.mp4",
+    "new_title": "He_Cried_Over_Cheese_viralitypoly.mp4",
+    "frame_config": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2", 
     "segments": [
-      { "start": "00:00:26.500", "end": "00:00:33.000", "label": "HOOK_CHEESE_CRY" },
-      { "start": "00:00:11.000", "end": "00:00:26.000", "label": "STORY_REVEAL" }
+      {
+        "start": "00:00:26.500",
+        "end": "00:00:32.500",
+        "label": "HOOK_CHEESE_CRY"
+      },
+      {
+        "start": "00:00:11.000",
+        "end": "00:00:24.000",
+        "label": "STORY_REVEAL_ODDS"
+      },
+      {
+        "start": "00:00:43.000",
+        "end": "00:00:56.500",
+        "label": "PROFIT_CALCULATION"
+      }
     ],
     "captions": [
-      { "start": "0.5", "end": "3.0", "text": "HE CRIED OVER CHEESE?! 🧀" },
-      { "start": "3.5", "end": "6.0", "text": "POLYMARKET IS CRAZY 📈" }
+      { "start": "0.5", "end": "3.5", "text": "HE CRIED OVER CHEESE?! 🧀" },
+      { "start": "4.0", "end": "6.0", "text": "POLYMARKET IS WILD 📈" },
+      { "start": "7.0", "end": "10.0", "text": "56% CHANCE TO CRY 😭" },
+      { "start": "12.0", "end": "16.0", "text": "30-DAY NON-STOP STREAM! ⏰" },
+      { "start": "20.0", "end": "25.0", "text": "$5,000 BET = $4,400 PROFIT? 💸" },
+      { "start": "27.0", "end": "32.0", "text": "HOW IS THIS NOT FREE? 🤔" }
     ]
   }
 ]
