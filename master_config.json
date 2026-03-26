@@ -1,0 +1,15 @@
+[
+  {
+    "original_file": "Clavicular Crying.mp4",
+    "new_title": "He_Cried_Over_Cheese_viralitypoly_whop_betting.mp4",
+    "frame_config": "crop=w=ih*9/16:h=ih:x=iw/4", 
+    "segments": [
+      { "start": "00:00:26.500", "end": "00:00:33.000", "label": "HOOK_CHEESE_CRY" },
+      { "start": "00:00:11.000", "end": "00:00:26.000", "label": "STORY_REVEAL" }
+    ],
+    "captions": [
+      { "start": "0.5", "end": "3.0", "text": "HE CRIED OVER CHEESE?! 🧀" },
+      { "start": "3.5", "end": "6.0", "text": "POLYMARKET IS CRAZY 📈" }
+    ]
+  }
+]
