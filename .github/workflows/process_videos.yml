@@ -1,4 +1,4 @@
-name: AI Video Agent - Fast Cache + Whisper
+name: AI Video Agent - Fast Cache + LFS Fix
 on:
   push:
     paths:
@@ -10,27 +10,25 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout Code
+      - name: Checkout Code (with LFS for Videos)
         uses: actions/checkout@v3
+        with:
+          lfs: true # <--- THIS FIXES THE "INVALID DATA" ERROR
+
+      - name: Checkout LFS objects
+        run: git lfs pull # Ensures the actual video data is downloaded
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-
-      - name: Cache Pip Dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          cache: 'pip' # Built-in python caching
 
       - name: Cache Whisper Model
         uses: actions/cache@v3
         with:
           path: ~/.cache/whisper
-          key: ${{ runner.os }}-whisper-base
+          key: whisper-base-model
 
       - name: Install Dependencies
         run: |
@@ -40,10 +38,10 @@ jobs:
       - name: Process Videos
         run: python3 scripts/processor.py
 
-      - name: Commit and Push to Repo
+      - name: Commit and Push
         run: |
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Viral content ready #viralitypoly" || echo "No changes"
+          git commit -m "Processed video #viralitypoly" || echo "No changes"
           git push
