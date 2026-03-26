@@ -114,19 +114,7 @@ for task_idx, job in enumerate(jobs):
         if os.path.exists(s): os.remove(s)
     os.remove(list_file); os.remove(combined)
 
-print("🚀 ALL DONE! #viralitypoly")        continue 
-
-    # 2. Transcribe the FIRST segment to get speech data (Fastest for 1.5hr videos)
-    print(f"🎙️ Transcribing segment 0 for captions...")
-    result = model.transcribe(raw_segments[0])
-    
-    # 3. Final Reframe & Edit
-    processed_segments = []
-    durations = []
-    raw_filter = job.get('frame_filter', "crop=w=ih*9/16:h=ih:x=(iw-ow)/2")
-    
-    for i, raw_seg in enumerate(raw_segments):
-        final_seg = f"t{task_idx}_final_s{i}.mp4"
+print("🚀 ALL DONE! #viralitypoly")= f"t{task_idx}_final_s{i}.mp4"
         # Reframing
         vf = f"{raw_filter},fps=30,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920"
         subprocess.run(["ffmpeg", "-y", "-i", raw_seg, "-vf", vf, "-c:v", "libx264", "-crf", "18", final_seg])
