@@ -1,5 +1,46 @@
-import json, subprocess, os, whisper, gdown, urllib.request
+import json, subprocess, os, whisper, gdown, yt_dlp
 
+# --- NEW: DOWNLOAD HANDLER ---
+def smart_download(url, target_filename):
+    """Detects source and downloads video to input folder."""
+    os.makedirs("input", exist_ok=True)
+    output_path = os.path.join("input", target_filename)
+    
+    # Overwrite check: remove old file if it exists to avoid conflicts
+    if os.path.exists(output_path):
+        os.remove(output_path)
+
+    print(f"📡 Attempting download from: {url}")
+    
+    try:
+        if "youtube.com" in url or "youtu.be" in url:
+            # YouTube Download Logic
+            ydl_opts = {
+                'format': 'bestvideo[height<=1080]+bestaudio/best[height<=1080]',
+                'outtmpl': output_path,
+                'quiet': True,
+                'no_warnings': True,
+            }
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
+            print(f"✅ YouTube download successful: {output_path}")
+            
+        elif "drive.google.com" in url:
+            # Google Drive Download Logic
+            gdown.download(url, output=output_path, quiet=False, fuzzy=True)
+            print(f"✅ Google Drive download successful: {output_path}")
+            
+        else:
+            print("❌ ERROR: Unsupported URL source. Use YouTube or GDrive.")
+            return None
+            
+        return output_path
+
+    except Exception as e:
+        print(f"❌ DOWNLOAD FAILED for {url}: {e}")
+        return None
+
+# --- EXISTING: FILE SEARCH ---
 def find_file_case_insensitive(directory, filename):
     if not os.path.exists(directory): return None
     target = filename.lower().strip()
@@ -8,52 +49,41 @@ def find_file_case_insensitive(directory, filename):
             return os.path.join(directory, f)
     return None
 
-def download_specific_file(url, target_name):
-    print(f"📡 Downloading from Google Drive: {target_name}...")
-    try:
-        output_path = f"input/{target_name}"
-        gdown.download(url, output=output_path, quiet=False, fuzzy=True)
-        return output_path
-    except Exception as e:
-        print(f"❌ DOWNLOAD ERROR for {target_name}: {e}")
-        return None
-
-print("🚀 Starting AI Agent (Multi-Task Mode)...")
+# --- MAIN ENGINE ---
+print("🚀 Initializing AI Video Agent...")
 model = whisper.load_model("base")
 
 with open('master_config.json') as f:
     jobs = json.load(f)
 
 os.makedirs("output", exist_ok=True)
-os.makedirs("input", exist_ok=True)
 
 for task_index, job in enumerate(jobs):
-    target_name = job['original_file']
+    target_name = job.get('original_file', f"video_{task_index}.mp4")
+    video_url = job.get('video_url', None)
+    
     print(f"\n--- 🛠️ TASK {task_index + 1}: {target_name} ---")
-    
-    # 1. Search Locally or Download
-    input_path = find_file_case_insensitive("input/", target_name)
-    if not input_path and "gdrive_url" in job and job["gdrive_url"]:
-        input_path = download_specific_file(job["gdrive_url"], target_name)
-    
-    if not input_path or not os.path.exists(input_path):
-        print(f"❌ SKIPPING: File {target_name} not found."); continue
 
-    # 2. Transcription (Whisper v2 Cached)
+    # LOGIC: Download if URL exists, else look locally
+    if video_url:
+        input_path = smart_download(video_url, target_name)
+    else:
+        input_path = find_file_case_insensitive("input/", target_name)
+
+    if not input_path or not os.path.exists(input_path):
+        print(f"❌ SKIPPING: Could not find or download {target_name}. Check your link/folder.")
+        continue
+
+    # --- YOUR EXISTING CLIPPING/WHISPER LOGIC STARTS HERE ---
     print(f"🎙️ Transcribing {target_name}...")
     result = model.transcribe(input_path)
     
-    # 3. Framing & Segmenting (DYNAMIC CROP/LAYOUT)
     segment_files = []
     durations = []
-    
-    # Get the framing instruction from JSON (Default to 9:16 center if missing)
     frame_filter = job.get('frame_filter', "crop=w=ih*9/16:h=ih:x=(iw-ow)/2")
     
     for i, seg in enumerate(job['segments']):
         temp_seg = f"task{task_index}_seg{i}.mp4"
-        print(f"✂️ Trimming Segment {i} with frame style: {frame_filter[:30]}...")
-        
         cmd = [
             "ffmpeg", "-y", "-ss", seg['start'], "-to", seg['end'],
             "-i", input_path, "-vf", f"{frame_filter},fps=30,scale=1080:1920",
@@ -65,7 +95,6 @@ for task_index, job in enumerate(jobs):
             durations.append(float(prob))
             segment_files.append(temp_seg)
 
-    # 4. Concatenate segments (Hook First)
     if not segment_files: continue
     list_file = f"list_task{task_index}.txt"
     with open(list_file, "w") as f:
@@ -74,28 +103,37 @@ for task_index, job in enumerate(jobs):
     combined = f"combined_task{task_index}.mp4"
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", list_file, "-c", "copy", combined])
 
-    # 5. Captions (Aligned to segments)
     cap_filters = []
     current_offset = 0.0
     source_caps = job.get('captions', [])
     
-    if source_caps: # Manual Captions
-        for c in source_caps:
-            txt = c['text'].replace("'", "").strip().upper()
-            cap_filters.append(f"drawtext=text='{txt}':enable='between(t,{c['start']},{c['end']})':fontcolor=yellow:fontsize=48:x=(w-text_w)/2:y=h-250:borderw=3:bordercolor=black")
-    else: # Whisper Auto-Captions
-        for s in result['segments']:
-            txt = s['text'].replace("'", "").strip().upper()
-            cap_filters.append(f"drawtext=text='{txt}':enable='between(t,{s['start']},{s['end']})':fontcolor=yellow:fontsize=48:x=(w-text_w)/2:y=h-250:borderw=3:bordercolor=black")
+    # Timeline Adjustment for Captions
+    for i, seg in enumerate(job['segments']):
+        seg_start = float(sum(float(x) * 60**(1-j) for j, x in enumerate(seg['start'].split(':'))))
+        seg_end = float(sum(float(x) * 60**(1-j) for j, x in enumerate(seg['end'].split(':'))))
+        
+        # Priority: Manual Captions if present, else Whisper
+        if source_caps:
+            # Note: This uses your manual logic if you provided it
+            for c in source_caps:
+                txt = c['text'].replace("'", "").strip().upper()
+                cap_filters.append(f"drawtext=text='{txt}':enable='between(t,{c['start']},{c['end']})':fontcolor=yellow:fontsize=48:x=(w-text_w)/2:y=h-250:borderw=3:bordercolor=black")
+        else:
+            for s in result['segments']:
+                if s['start'] >= seg_start and s['end'] <= seg_end:
+                    new_start = s['start'] - seg_start + current_offset
+                    new_end = s['end'] - seg_start + current_offset
+                    txt = s['text'].replace("'", "").strip().upper()
+                    cap_filters.append(f"drawtext=text='{txt}':enable='between(t,{new_start},{new_end})':fontcolor=yellow:fontsize=48:x=(w-text_w)/2:y=h-250:borderw=3:bordercolor=black")
+        
+        current_offset += durations[i]
 
-    # 6. Final Production
     final_output = f"output/{job['new_title']}"
-    # Use first 80 captions to prevent command-line overflow
     subprocess.run(["ffmpeg", "-y", "-i", combined, "-vf", ",".join(cap_filters[:80]), "-c:a", "copy", final_output])
 
-    # 7. Cleanup task files
+    # Cleanup task files
     for s in segment_files: os.remove(s)
     os.remove(list_file); os.remove(combined)
-    print(f"✅ TASK COMPLETE: {job['new_title']} #viralitypoly")
+    print(f"✅ SUCCESS: {job['new_title']} produced.")
 
-print("\n🚀 ALL TASKS FINISHED SUCCESSFULLY!")
+print("\n🚀 ALL TASKS COMPLETED #viralitypoly")
