@@ -1,4 +1,4 @@
-name: AI Video Agent - Multi-Task Pro
+name: AI Video Agent - Download & Clip Pro
 on:
   push:
     paths:
@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/whisper
-          key: whisper-base-v2 # Constant key keeps it fast
+          key: whisper-base-v2
 
       - name: Install System Tools
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
@@ -31,7 +31,7 @@ jobs:
       - name: Install Libraries
         run: pip install -r requirements.txt
 
-      - name: Process Multiple Tasks
+      - name: Process Tasks
         run: python3 scripts/processor.py
 
       - name: Save Results
@@ -39,5 +39,5 @@ jobs:
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Processed batch #viralitypoly" || echo "No changes"
+          git commit -m "Viral content update #viralitypoly" || echo "No changes"
           git push
