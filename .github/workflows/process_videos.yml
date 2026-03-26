@@ -1,4 +1,4 @@
-name: AI Video Agent - Final Stable Fix
+name: AI Video Agent - Final Download Fix
 on:
   push:
     paths:
@@ -10,25 +10,16 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout Code (with LFS for Videos)
+      - name: Checkout Code
         uses: actions/checkout@v3
         with:
           lfs: true
-
-      - name: Checkout LFS objects
-        run: git lfs pull
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          cache: 'pip' # This will now work because of requirements.txt
-
-      - name: Cache Whisper Model
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/whisper
-          key: whisper-base-v1
+          cache: 'pip'
 
       - name: Install Dependencies
         run: |
@@ -43,5 +34,5 @@ jobs:
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Processed batch #viralitypoly" || echo "No changes"
+          git commit -m "Viral Video Processed #viralitypoly" || echo "No changes"
           git push
