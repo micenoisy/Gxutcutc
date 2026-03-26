@@ -1,4 +1,4 @@
-name: AI Video Agent - GDrive Folder + Super Cache
+name: AI Video Agent - Final Stable Logic
 on:
   push:
     paths:
@@ -17,29 +17,27 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          cache: 'pip' # Automated caching for pip
+          cache: 'pip' # Standard fast pip cache
 
       - name: Cache Whisper Model
         uses: actions/cache@v3
         with:
           path: ~/.cache/whisper
-          key: whisper-base-v2
+          key: whisper-base-v2 # KEPT THE SAME FOR YOUR SPEED REQUIREMENT
 
-      - name: Install System Dependencies
-        run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install System Tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
-      - name: Install Python Libraries
-        run: |
-          pip install -r requirements.txt
+      - name: Install Python Requirements
+        run: pip install -r requirements.txt
 
       - name: Process Videos
         run: python3 scripts/processor.py
 
-      - name: Commit and Push
+      - name: Commit and Push Results
         run: |
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Viral batch processed #viralitypoly" || echo "No changes"
+          git commit -m "Batch Processed #viralitypoly" || echo "No changes"
           git push
