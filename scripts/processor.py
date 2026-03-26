@@ -110,4 +110,7 @@ for job in jobs:
 print("✨ All jobs completed.")    if os.path.exists("combined.mp4"): os.remove("combined.mp4")
     print(f"🚀 FINISHED: {job['new_title']} #viralitypoly")
 
+print("✨ All jobs completed.")    if os.path.exists("combined.mp4"): os.remove("combined.mp4")
+    print(f"🚀 FINISHED: {job['new_title']} #viralitypoly")
+
 print("✨ All jobs completed.")
