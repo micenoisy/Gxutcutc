@@ -1,4 +1,4 @@
-name: AI Video Agent - Whisper + Auto Trim
+name: AI Video Agent - Fast Cache + Whisper
 on:
   push:
     paths:
@@ -18,19 +18,32 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Cache Pip Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Cache Whisper Model
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/whisper
+          key: ${{ runner.os }}-whisper-base
+
       - name: Install Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get update && sudo apt-get install -y ffmpeg
           pip install openai-whisper moviepy
 
       - name: Process Videos
         run: python3 scripts/processor.py
 
-      - name: Commit and Push
+      - name: Commit and Push to Repo
         run: |
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Processed with Whisper AI #viralitypoly" || echo "No changes"
+          git commit -m "Viral content ready #viralitypoly" || echo "No changes"
           git push
