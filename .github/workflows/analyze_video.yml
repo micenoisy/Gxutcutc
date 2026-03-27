@@ -1,33 +1,25 @@
 name: 🔍 AI Analyzer - Download First
 on:
   push:
-    paths:
-      - 'analyze_config.json'
-
+    paths: [ 'analyze_config.json' ]
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    container: python:3.9-slim # Minimal Docker Image
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      # STEP 1: DOWNLOAD FIRST (To verify link works immediately)
-      - name: Download Video from GDrive
+      - uses: actions/checkout@v3
+      - name: Download Video First
         run: |
           pip install gdown
-          python3 -c "import gdown, json; links = json.load(open('analyze_config.json')); [gdown.download(l['url'], output='input/raw.mp4', quiet=False, fuzzy=True) for l in links]"
-
-      # STEP 2: INSTALL DEPENDENCIES (Only if download worked)
-      - name: Install Tools
+          python3 -c "import gdown, json; links = json.load(open('analyze_config.json')); [gdown.download(l['url'], output=f'input/{l[\"original_file\"]}', fuzzy=True) for l in links]"
+      - name: Install Heavy Tools
         run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg
+          apt-get update && apt-get install -y ffmpeg
           pip install openai-whisper
-
-      - name: Run Whisper & Visual Analysis
+      - name: Run Analysis
         run: python3 scripts/analyzer.py
-
-      - name: Upload Analysis Report
+      - name: Upload Report
         uses: actions/upload-artifact@v3
         with:
-          name: video-analysis-report
-          path: reports/*.txt
+          name: analysis-report
+          path: reports/
