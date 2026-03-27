@@ -5,9 +5,9 @@ on:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    container: python:3.9-slim # Minimal Docker Image
+    container: python:3.9-slim
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4 # Updated to v4
       - name: Download Video First
         run: |
           pip install gdown
@@ -19,7 +19,7 @@ jobs:
       - name: Run Analysis
         run: python3 scripts/analyzer.py
       - name: Upload Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4 # FIXED: Updated v3 to v4
         with:
           name: analysis-report
           path: reports/
