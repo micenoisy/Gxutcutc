@@ -1,29 +1,49 @@
-name: 🎬 AI Production - Fast Mode
+name: 🎬 AI Production - Ultra Fast Mode
 on:
   push:
     paths: [ 'master_config.json' ]
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container: python:3.9-slim
+    runs-on: ubuntu-latest # Standard runner is much faster than slim docker
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      # STEP 1: DOWNLOAD VIDEOS FIRST (As you requested)
       - name: Download Videos First
         run: |
           pip install gdown
           mkdir -p input
           mkdir -p output
           python3 -c "import gdown, json, os; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output='input/', quiet=False, fuzzy=True) for j in jobs if 'gdrive_url' in j]"
-      - name: Setup Tools
+
+      # STEP 2: SETUP CACHE (This is the "1-second" fix)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip' # Automatically caches all pip libraries
+
+      - name: Cache Whisper Model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/whisper
+          key: whisper-base-model-v2
+
+      # STEP 3: INSTALL TOOLS (Will be instant after 1st run)
+      - name: Install Dependencies
         run: |
-          apt-get update && apt-get install -y ffmpeg git
-          pip install openai-whisper
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install openai-whisper gdown yt-dlp
+
+      # STEP 4: PROCESS
       - name: Process Clips
         run: python3 scripts/processor.py
+
+      # STEP 5: SAVE (Fixed Git error)
       - name: Save Results
         run: |
-          # FIX: Mark the workspace as safe for Git
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --global user.name "AI-Agent"
           git config --global user.email "agent@github.com"
           git add output/
