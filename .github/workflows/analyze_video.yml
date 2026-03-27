@@ -11,8 +11,8 @@ jobs:
       - name: Download Video First
         run: |
           pip install gdown
-          mkdir -p input  # <--- THIS FIXES THE ERROR
-          python3 -c "import gdown, json, os; jobs = json.load(open('analyze_config.json')); [gdown.download(j['url'], output='input/', quiet=False, fuzzy=True) for j in jobs]"
+          mkdir -p input
+          python3 -c "import gdown, json, os; links = json.load(open('analyze_config.json')); [gdown.download(l['url'], output='input/', quiet=False, fuzzy=True) for l in links]"
       - name: Install Heavy Tools
         run: |
           apt-get update && apt-get install -y ffmpeg
