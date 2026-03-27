@@ -1,27 +1,23 @@
-name: 🎬 AI Production - Fast Docker Mode
+name: 🎬 AI Production - Fast Mode
 on:
   push:
-    paths:
-      - 'master_config.json'
-
+    paths: [ 'master_config.json' ]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 
-      image: micenoisy/ai-video-base:latest # I suggest creating a docker image with whisper/ffmpeg pre-installed
+    container: python:3.9-slim
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      # STEP 1: DOWNLOAD FIRST
-      - name: Download Videos
+      - uses: actions/checkout@v3
+      - name: Download Videos First
         run: |
-          python3 -c "import gdown, json; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output=f'input/{j['original_file']}', fuzzy=True) for j in jobs if 'gdrive_url' in j]"
-
-      # STEP 2: PROCESS (Fast because dependencies are pre-installed in Docker)
-      - name: Run Multi-Task Production
+          pip install gdown
+          python3 -c "import gdown, json; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output=f'input/{j[\"original_file\"]}', fuzzy=True) for j in jobs if 'gdrive_url' in j]"
+      - name: Setup Tools
+        run: |
+          apt-get update && apt-get install -y ffmpeg
+          pip install openai-whisper
+      - name: Process Clips
         run: python3 scripts/processor.py
-
       - name: Save Results
         run: |
           git config --global user.name "AI-Agent"
