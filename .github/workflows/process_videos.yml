@@ -7,11 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.9-slim
     steps:
-      - uses: actions/checkout@v4 # Updated to v4
+      - uses: actions/checkout@v4
       - name: Download Videos First
         run: |
           pip install gdown
-          python3 -c "import gdown, json; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output=f'input/{j[\"original_file\"]}', fuzzy=True) for j in jobs if 'gdrive_url' in j]"
+          mkdir -p input  # <--- THIS FIXES THE ERROR
+          mkdir -p output
+          python3 -c "import gdown, json; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output='input/', quiet=False, fuzzy=True) for j in jobs if 'gdrive_url' in j]"
       - name: Setup Tools
         run: |
           apt-get update && apt-get install -y ffmpeg
@@ -21,6 +23,7 @@ jobs:
       - name: Save Results
         run: |
           git config --global user.name "AI-Agent"
+          git config --global user.email "agent@github.com"
           git add output/
           git commit -m "Viral batch #viralitypoly" || echo "No changes"
           git push
