@@ -1,0 +1,33 @@
+name: 🔍 AI Analyzer - Download First
+on:
+  push:
+    paths:
+      - 'analyze_config.json'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # STEP 1: DOWNLOAD FIRST (To verify link works immediately)
+      - name: Download Video from GDrive
+        run: |
+          pip install gdown
+          python3 -c "import gdown, json; links = json.load(open('analyze_config.json')); [gdown.download(l['url'], output='input/raw.mp4', quiet=False, fuzzy=True) for l in links]"
+
+      # STEP 2: INSTALL DEPENDENCIES (Only if download worked)
+      - name: Install Tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install openai-whisper
+
+      - name: Run Whisper & Visual Analysis
+        run: python3 scripts/analyzer.py
+
+      - name: Upload Analysis Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: video-analysis-report
+          path: reports/*.txt
