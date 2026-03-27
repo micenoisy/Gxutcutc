@@ -1,4 +1,4 @@
-name: 🔍 AI Analyzer - Download First
+name: 🔍 AI Analyzer - Direct Link Mode
 on:
   push:
     paths: [ 'analyze_config.json' ]
@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.9-slim
     steps:
-      - uses: actions/checkout@v4 # Updated to v4
-      - name: Download Video First
+      - uses: actions/checkout@v4
+      - name: Download Video Directly
         run: |
           pip install gdown
-          python3 -c "import gdown, json; links = json.load(open('analyze_config.json')); [gdown.download(l['url'], output=f'input/{l[\"original_file\"]}', fuzzy=True) for l in links]"
+          python3 -c "import gdown, json, os; os.makedirs('input', exist_ok=True); links = json.load(open('analyze_config.json')); [gdown.download(l['url'], output='input/', quiet=False, fuzzy=True) for l in links]"
       - name: Install Heavy Tools
         run: |
           apt-get update && apt-get install -y ffmpeg
@@ -19,7 +19,7 @@ jobs:
       - name: Run Analysis
         run: python3 scripts/analyzer.py
       - name: Upload Report
-        uses: actions/upload-artifact@v4 # FIXED: Updated v3 to v4
+        uses: actions/upload-artifact@v4
         with:
           name: analysis-report
           path: reports/
