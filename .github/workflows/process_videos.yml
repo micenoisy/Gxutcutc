@@ -16,12 +16,14 @@ jobs:
           python3 -c "import gdown, json, os; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output='input/', quiet=False, fuzzy=True) for j in jobs if 'gdrive_url' in j]"
       - name: Setup Tools
         run: |
-          apt-get update && apt-get install -y ffmpeg git # FIXED: Added git
+          apt-get update && apt-get install -y ffmpeg git
           pip install openai-whisper
       - name: Process Clips
         run: python3 scripts/processor.py
       - name: Save Results
         run: |
+          # FIX: Mark the workspace as safe for Git
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --global user.name "AI-Agent"
           git config --global user.email "agent@github.com"
           git add output/
