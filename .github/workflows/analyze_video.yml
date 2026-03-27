@@ -1,4 +1,4 @@
-name: 🔍 AI Analyzer - Direct Link Mode
+name: 🔍 AI Analyzer - Download First
 on:
   push:
     paths: [ 'analyze_config.json' ]
@@ -8,10 +8,11 @@ jobs:
     container: python:3.9-slim
     steps:
       - uses: actions/checkout@v4
-      - name: Download Video Directly
+      - name: Download Video First
         run: |
           pip install gdown
-          python3 -c "import gdown, json, os; os.makedirs('input', exist_ok=True); links = json.load(open('analyze_config.json')); [gdown.download(l['url'], output='input/', quiet=False, fuzzy=True) for l in links]"
+          mkdir -p input  # <--- THIS FIXES THE ERROR
+          python3 -c "import gdown, json, os; jobs = json.load(open('analyze_config.json')); [gdown.download(j['url'], output='input/', quiet=False, fuzzy=True) for j in jobs]"
       - name: Install Heavy Tools
         run: |
           apt-get update && apt-get install -y ffmpeg
