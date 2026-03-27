@@ -1,4 +1,4 @@
-name: AI Video Agent - Pro Multi-Tasking
+name: 🎬 AI Production - Fast Docker Mode
 on:
   push:
     paths:
@@ -7,41 +7,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    container: 
+      image: micenoisy/ai-video-base:latest # I suggest creating a docker image with whisper/ffmpeg pre-installed
     steps:
-      - name: Checkout Code (LFS Enabled)
+      - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-          lfs: true
 
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-          cache: 'pip'
-
-      - name: Cache Whisper Model
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/whisper
-          key: whisper-base-v2 # Constant key to ensure 0-second loading
-
-      - name: Install System Dependencies
+      # STEP 1: DOWNLOAD FIRST
+      - name: Download Videos
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg git-lfs
+          python3 -c "import gdown, json; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output=f'input/{j['original_file']}', fuzzy=True) for j in jobs if 'gdrive_url' in j]"
 
-      - name: Install Python Libraries
-        run: pip install -r requirements.txt
-
-      - name: Run Multi-Task AI Agent
+      # STEP 2: PROCESS (Fast because dependencies are pre-installed in Docker)
+      - name: Run Multi-Task Production
         run: python3 scripts/processor.py
 
-      - name: Commit and Push Finished Clips
+      - name: Save Results
         run: |
-          git config --global user.name "AI-Video-Agent"
-          git config --global user.email "agent@github.com"
+          git config --global user.name "AI-Agent"
           git add output/
-          git commit -m "Batch Processed: #viralitypoly" || echo "No changes"
+          git commit -m "Viral batch #viralitypoly" || echo "No changes"
           git push
