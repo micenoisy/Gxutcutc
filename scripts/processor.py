@@ -104,4 +104,4 @@ for task_idx, job in enumerate(jobs):
     os.remove(list_file); os.remove(combined)
     print(f"✅ PRODUCTION COMPLETE: {final_output}")
 
-print("🚀 ALL TASKS FINISHED #viralitypoly")
+print("🚀 ALL TASKS FINISHED #viralitypoly")print("🚀 ALL TASKS FINISHED #viralitypoly")
