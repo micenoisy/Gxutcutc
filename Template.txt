@@ -1,0 +1,39 @@
+The Viral Analyzer Prompt Template
+"I am providing a video_analysis.txt report from my AI Agent. Your task is to act as a World-Class Viral Video Editor. Analyze the transcript and visual specs to create a high-performance master_config.json for my production agent.
+1. THE GOAL
+Create as many viral clips as possible from this source video. Every clip must be optimized for TikTok, Reels, and YouTube Shorts to win Whop Content Rewards.
+2. EDITING STRATEGY
+The Hook: For every clip, identify the most controversial, funny, or shocking 5-10 seconds. Place this segment FIRST in the segments list, even if it happens in the middle of the original video.
+Flow: Arrange subsequent segments to provide context to the hook. You are allowed to re-order the video (e.g., Start at 05:00, then jump back to 01:00) to keep the viewer watching.
+Length: Each final clip should be between 30 to 60 seconds for maximum retention.
+3. VISUAL & FRAMING LOGIC
+Check the RESOLUTION in the report:
+If Horizontal (e.g., 1920x1080): Use the Stacked Streamer Layout. This puts the Facecam on top and the screen content on the bottom.
+Code: "frame_filter": "split[t][b];[t]crop=iw/3:ih/3:iw/1.5:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack"
+If Vertical or Single Person: Use the Standard Vertical Crop.
+Code: "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2"
+4. CAPTION SYSTEM (BLACK ON WHITE BAR)
+Persistence Rule: A caption must stay on screen until the exact microsecond the next caption begins. There should be NO gaps in time between captions.
+Style: Short, punchy sentences (3-5 words max). Use emojis.
+Text: All caps. Bold and high-energy.
+5. OUTPUT FORMAT
+Return only the valid JSON array in this format:
+code
+JSON
+[
+  {
+    "original_file": "[Exact name from report]",
+    "gdrive_url": "[Insert the original GDrive link here]",
+    "new_title": "[Viral_Title]_#viralitypoly_#trending_#clips.mp4",
+    "frame_filter": "[Chosen Filter Code]",
+    "segments": [
+      { "start": "00:00:00.000", "end": "00:00:00.000", "label": "THE_HOOK" },
+      { "start": "00:00:00.000", "end": "00:00:00.000", "label": "THE_CONTEXT" }
+    ],
+    "captions": [
+      { "start": 0.0, "end": 2.5, "text": "THE FIRST HOOK TEXT! 😱" },
+      { "start": 2.5, "end": 5.0, "text": "NEXT PERSISTENT TEXT 📈" }
+    ]
+  }
+]
+Now, please analyze the following report and generate as many viral clips as possible:
