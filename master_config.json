@@ -1,82 +1,14 @@
 [
   {
-    "__AI_GUIDE__": {
-      "original_file": "adin_trump_full_stream.mp4",
-      "video_url": "https://youtu.be/BoibR0BUefs?si=5eMDod-3P-ypclMC",
-      "new_title": "Multiple Viral Cuts #viralitypoly",
-      "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2",
-      "segments": "5 High-Energy Shorts (Under 45s)",
-      "captions": "Manual punchyaptionfor first 10s of each segment."
-    }
-  },
-  {
     "original_file": "Prine Andrew Sentenced to Prison.mp4",
-    "video_url": "https://drive.google.com/file/d/1AEc1908BlKjBaah9DZUUhDeSaRxOnDDh/view?usp=drivesdk",
-    "new_title": "THE MOMENT TRUhMP ALKED IN 😱 #viralitypoly #trump #adinross #kick",
-    "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2",
+    "gdrive_url": "https://drive.google.com/file/d/1AEc1908BlKjBaah9DZUUhDeSaRxOnDDh/view?usp=drivesdk",
+    "new_title": "Adin_Ross_Trump_Highlights_#viralitypoly.mp4",
+    "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2", 
     "segments": [
-      { "start": "00:00:08.000", "end": "00:00:38.000", "label": "THE_ENTRANCE" }
+      { "start": "00:00:10.000", "end": "00:00:25.000" }
     ],
     "captions": [
-      { "start": "0.5", "end": "3.5", "text": "THE BIGGEST STREAM EVER? 📈" },
-      { "start": "4.0", "end": "7.0", "text": "ADIN ROSS x DONALD TRUMP" },
-      { "start": "7.5", "end": "10.0", "text": "HISTORY IS BEING MADE! 🇺🇸" }
-    ]
-  },
-  {
-    "original_file": "adin_trump_full_stream.mp4",
-    "video_url": "https://youtu.be/BoibR0BUefs?si=5eMDod-3P-ypclMC",
-    "new_title": "BARRON TRUMA HUGE FAN? 🤯 #viralitypoly #barrontrump #politics",
-    "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2",
-    "segments": [
-      { "start": "00:02:10.000", "end": "00:02:50.000", "label": "BARRON_MENTION" }
-    ],
-    "captions": [
-      { "start": "0.5", "end": "3.5", "text": "BARRON TRUMP LOVES ADIN? 😳" },
-      { "start": "4.0", "end": "7.0", "text": "THE SECRET BEHIND THIS STREAM" },
-      { "start": "7.5", "end": "10.0", "text": "BARRON CALLED IT FIRST! 📞" }
-    ]
-  },
-  {
-    "original_file": "adin_trump_full_stream.mp4",
-    "video_url": "https://youtu.be/BoibR0BUefs?si=5eMDod-3P-ypclMC",
-    "new_title": "ADIN GIVES TRUMP A ROLEX! ⌚ #viralitypoly #rolex #luxury #gift",
-    "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2",
-    "segments": [
-      { "start": "00:54:15.000", "end": "00:54:55.000", "label": "THE_ROLEX_GIFT" }
-    ],
-    "captions": [
-      { "start": "0.5", "end": "3.5", "text": "A ROLEX FOR THE PRESIDENT? ⌚" },
-      { "start": "4.0", "end": "7.0", "text": "ADIN'S INSANE GIFT REVEALED" },
-      { "start": "7.5", "end": "10.0", "text": "TRUMP'S HONEST REACTION! 😱" }
-    ]
-  },
-  {
-    "original_file": "adin_trump_full_stream.mp4",
-    "video_url": "https://youtu.be/BoibR0BUefs?si=5eMDod-3P-ypclMC",
-    "new_title": "TRUMP ON TIKTOK BAN! 📱 #viralitypoly #tiktok #savebitok #trending",
-    "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2",
-    "segments": [
-      { "start": "00:14:40.000", "end": "00:15:15.000", "label": "TIKTOK_OPINION" }
-    ],
-    "captions": [
-      { "start": "0.5", "end": "3.5", "text": "IS TIKTOK GETTING BANNED? 🚫" },
-      { "start": "4.0", "end": "7.0", "text": "TRUMP REVEALS HIS PLAN!" },
-      { "start": "7.5", "end": "10.0", "text": "YOU NEED TO HEAR THIS... 🔊" }
-    ]
-  },
-  {
-    "original_file": "adin_trump_full_stream.mp4",
-    "video_url": "https://youtu.be/BoibR0BUefs?si=5eMDod-3P-ypclMC",
-    "new_title": "THE CUSTOM TRUMP CYBERTRUCK! 🏎️ #viralitypoly #cybertruck #tesla #elonmusk",
-    "frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2",
-    "segments": [
-      { "start": "01:19:10.000", "end": "01:19:50.000", "label": "CYBERTRUCK_REVEAL" }
-    ],
-    "captions": [
-      { "start": "0.5", "end": "3.5", "text": "THE CRAZIEST CYBERTRUCK EVER! 🏎️" },
-      { "start": "4.0", "end": "7.0", "text": "MAGA WRAPPED TESLA?!" },
-      { "start": "7.5", "end": "10.0", "text": "ELON MUSK WOULD BE PROUD! 🇺🇸" }
+      { "start": "0.5", "end": "4.5", "text": "THE ADIN ROSS X TRUMP STREAM! 🇺🇸" }
     ]
   }
 ]
