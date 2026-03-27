@@ -1,4 +1,4 @@
-name: AI Video Agent - Ultra Fast Segment Mode
+name: AI Video Agent - Pro Multi-Tasking
 on:
   push:
     paths:
@@ -10,34 +10,38 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout Code
+      - name: Checkout Code (LFS Enabled)
         uses: actions/checkout@v3
+        with:
+          lfs: true
 
-      - name: Set up Python
+      - name: Set up Python 3.9
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' # Updated to 3.10
+          python-version: '3.9'
           cache: 'pip'
 
       - name: Cache Whisper Model
         uses: actions/cache@v3
         with:
           path: ~/.cache/whisper
-          key: whisper-base-v2
+          key: whisper-base-v2 # Constant key to ensure 0-second loading
 
-      - name: Install System Tools
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg git-lfs
 
-      - name: Install Libraries
+      - name: Install Python Libraries
         run: pip install -r requirements.txt
 
-      - name: Process Tasks
+      - name: Run Multi-Task AI Agent
         run: python3 scripts/processor.py
 
-      - name: Save Results
+      - name: Commit and Push Finished Clips
         run: |
           git config --global user.name "AI-Video-Agent"
           git config --global user.email "agent@github.com"
           git add output/
-          git commit -m "Ultra-fast segments processed #viralitypoly" || echo "No changes"
+          git commit -m "Batch Processed: #viralitypoly" || echo "No changes"
           git push
