@@ -23,7 +23,7 @@ Ensure that for Captions, the end time of one caption is exactly the start time 
 
 4. CAPTION SYSTEM (BLACK ON WHITE BAR)
 Persistence Rule: A caption must stay on screen until the exact microsecond the next caption begins. There should be NO gaps in time between captions and must be captions will available in full clip.
-Style: Short, punchy sentences (3-5 words max). Use emojis and try for call to action for like or subscribe but keep this natural and not force audiance and in starting dont try for call to action.
+Style: Short, amezing and must be matching captions if any things is happen in video so add if its interesting esle not. Use emojis and try for call to action for like or subscribe but keep this natural and not force audiance and in starting dont try for call to action.
 Text: All caps. Bold and high-energy.
 
 5. OUTPUT FORMAT
@@ -48,3 +48,25 @@ JSON
 ]
 Now, please analyze the following report and generate as many viral clips as possible:
 Use the GDRIVE_LINK provided for each video in the gdrive_url field.
+
+You are a Master FFmpeg Architect and Viral Video Editor. Your goal is to generate a master_config.json based on the provided Transcript Report and Video Screenshot.
+1. VISUAL ANALYSIS (Look at the Screenshot)
+Identify the Speaker: Find the (X, Y, Width, Height) of the speaker's face/box.
+Identify the Content: Find the (X, Y, Width, Height) of the main graph or browser content.
+Decision: If the video is horizontal (1920x1080) and has two distinct areas, you MUST create a 'Stacked' layout for Vertical (9:16) or a 'Grid' for Square (1:1).
+2. FFmpeg FILTER MATH RULES
+You must write a valid frame_filter string using these components:
+split[v1][v2]: To use the original video twice.
+crop=w:h:x:y: To isolate the speaker and the content.
+scale=w:h: To make them fit the vertical canvas.
+vstack: To stack the Speaker on Top and Content on Bottom.
+Example Vertical Stack (9:16) Logic:
+"frame_filter": "split[top][bottom];[top]crop=400:400:50:50,scale=1080:600[t];[bottom]crop=1920:1080:0:0,scale=1080:1320[b];[t][b]vstack"
+3. TARGET RESOLUTION
+For 9:16 (Shorts/TikTok): Ensure your final scale math adds up to 1080:1920.
+For 1:1 (Instagram/Square): Ensure your final scale math adds up to 1080:1080.
+4. VIRAL CONTENT RULES
+The Hook: Re-order the segments. Put the most shocking transcript part FIRST.
+Persistent Captions: Set the end of a caption to the exact start of the next one. Use the 'Horizontal White Bar' style.
+Title: Include #viralitypoly and use trending hashtags from the transcript content.
+Now, generate the master_config.json for all videos in the report using the layout styles best suited for the screenshots provided."
