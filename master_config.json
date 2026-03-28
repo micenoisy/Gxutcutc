@@ -2,29 +2,13 @@
   {
     "original_file": "CHICOF1POLYMARKET.mp4",
     "gdrive_url": "https://drive.google.com/file/d/1LCzmUP1bd7-cfe9l8pT0yZPr8Vg5K1dL/view?usp=drivesdk",
-    "new_title": "F1_Free_Money_Glitch_#viralitpoly_#f1_#trending.mp4",
+    "new_title": "F1_Free_Money_Glitch_#viralitypoly_#f1_#trending.mp4",
     "frame_filter": "split[t][b];[t]crop=400:400:0:680,scale=1080:960[face];[b]crop=1400:800:400:150,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
-      {
-        "start": "00:00:00.000",
-        "end": "00:00:03.220",
-        "label": "THE_HOOK"
-      },
-      {
-        "start": "00:00:24.280",
-        "end": "00:00:28.040",
-        "label": "THE_SHOCK"
-      },
-      {
-        "start": "00:00:03.220",
-        "end": "00:00:05.760",
-        "label": "THE_CONTEXT"
-      },
-      {
-        "start": "00:00:14.840",
-        "end": "00:00:18.920",
-        "label": "THE_PAYOFF"
-      }
+      { "start": "00:00:00.000", "end": "00:00:03.220", "label": "THE_HOOK" },
+      { "start": "00:00:24.280", "end": "00:00:28.040", "label": "THE_SHOCK" },
+      { "start": "00:00:03.220", "end": "00:00:05.760", "label": "THE_CONTEXT" },
+      { "start": "00:00:14.840", "end": "00:00:18.920", "label": "THE_PAYOFF" }
     ],
     "captions": [
       { "start": 0.0, "end": 1.6, "text": "WANT FREE MONEY? 💸" },
@@ -37,26 +21,14 @@
     ]
   },
   {
-    "original_file": "ChicoFilo -part 1- G2 vs BLG League Of Legends - WHAT G2 isnt favorites? mp4.mp4",
+    "original_file": "ChicoFilo -part 1- G2 vs BLG League Of Legends.mp4",
     "gdrive_url": "https://drive.google.com/file/d/12ZvAWj-xggpEDHabioS_6Hc1Z3mW4uRv/view?usp=drivesdk",
     "new_title": "G2_Are_Underdogs_#viralitypoly_#leagueoflegends_#clips.mp4",
     "frame_filter": "split[t][b];[t]crop=400:400:0:680,scale=1080:960[face];[b]crop=1400:800:400:150,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
-      {
-        "start": "00:00:15.500",
-        "end": "00:00:20.980",
-        "label": "THE_HOOK"
-      },
-      {
-        "start": "00:00:24.780",
-        "end": "00:00:26.780",
-        "label": "THE_PROOF"
-      },
-      {
-        "start": "00:00:00.000",
-        "end": "00:00:06.140",
-        "label": "THE_CONTEXT"
-      }
+      { "start": "00:00:15.500", "end": "00:00:20.980", "label": "THE_HOOK" },
+      { "start": "00:00:24.780", "end": "00:00:26.780", "label": "THE_PROOF" },
+      { "start": "00:00:00.000", "end": "00:00:06.140", "label": "THE_CONTEXT" }
     ],
     "captions": [
       { "start": 0.0, "end": 2.5, "text": "G2 VERSUS BLG?! ⚔️" },
@@ -67,21 +39,13 @@
     ]
   },
   {
-    "original_file": "ChicoFilo part 3 G2 vs BLG if we win we buy CS cases.mp4",
+    "original_file": "ChicoFilo part 3 G2 vs BLG.mp4",
     "gdrive_url": "https://drive.google.com/file/d/15GsEX4bkCPoPU1t6p6TtTwKMsB3OGDbq/view?usp=drivesdk",
     "new_title": "CSGO_Cases_Bet_#viralitypoly_#csgo_#betting.mp4",
     "frame_filter": "split[t][b];[t]crop=400:400:0:680,scale=1080:960[face];[b]crop=1400:800:400:150,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
-      {
-        "start": "00:00:02.000",
-        "end": "00:00:07.520",
-        "label": "THE_HOOK"
-      },
-      {
-        "start": "00:00:11.520",
-        "end": "00:00:18.720",
-        "label": "THE_CONTEXT"
-      }
+      { "start": "00:00:02.000", "end": "00:00:07.520", "label": "THE_HOOK" },
+      { "start": "00:00:11.520", "end": "00:00:18.720", "label": "THE_CONTEXT" }
     ],
     "captions": [
       { "start": 0.0, "end": 2.5, "text": "IF WE WIN THIS G2 BET... 🎲" },
@@ -97,40 +61,21 @@
     "new_title": "March_Madness_Cheat_Code_#viralitypoly_#collegehoops_#shorts.mp4",
     "frame_filter": "split[t][b];[t]crop=400:400:0:680,scale=1080:960[face];[b]crop=1400:800:400:150,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
-      {
-        "start": "00:01:21.440",
-        "end": "00:01:23.440",
-        "label": "THE_HOOK"
-      },
-      {
-        "start": "00:01:24.840",
-        "end": "00:01:27.440",
-        "label": "THE_SHOCK"
-      },
-      {
-        "start": "00:01:28.280",
-        "end": "00:01:31.120",
-        "label": "THE_REACTION"
-      },
-      {
-        "start": "00:00:14.640",
-        "end": "00:00:18.400",
-        "label": "THE_DATA"
-      },
-      {
-        "start": "00:00:26.280",
-        "end": "00:00:28.280",
-        "label": "THE_PAYOFF"
-      }
+      { "start": "00:01:21.440", "end": "00:01:23.440", "label": "THE_HOOK" },
+      { "start": "00:01:24.840", "end": "00:01:27.440", "label": "THE_SHOCK" },
+      { "start": "00:01:28.280", "end": "00:01:31.120", "label": "THE_REACTION" },
+      { "start": "00:00:14.640", "end": "00:00:18.400", "label": "THE_DATA" },
+      { "start": "00:00:26.280", "end": "00:00:28.280", "label": "THE_PAYOFF" }
     ],
     "captions": [
       { "start": 0.0, "end": 2.0, "text": "FLORIDA WON LAST YEAR! 🐊" },
-      { "start": 2.0, "end": 4.6, "text": "ADVANCE TO CHAMPIONSHIP? 🏀" },
-      { "start": 4.6, "end": 7.44, "text": "WAIT WHAT?! 🤯" },
-      { "start": 7.44, "end": 9.44, "text": "ONLY 10 CENTS A SHARE! 🪙" },
-      { "start": 9.44, "end": 11.2, "text": "IF THEY MAKE FINAL FOUR! 📈" },
-      { "start": 11.2, "end": 13.2, "text": "MIGHT HAVE TO INVEST! 💰" }
+      { "start": 2.0, "end": 5.5, "text": "WILL THEY ADVANCE TO THE FINALS? 🏀" },
+      { "start": 5.5, "end": 8.28, "text": "WAIT WHAT?! 🤯" },
+      { "start": 8.28, "end": 12.04, "text": "ONLY 10 CENTS A SHARE! 🪙" },
+      { "start": 12.04, "end": 14.04, "text": "MIGHT HAVE TO INVEST! 📈" }
     ]
+  }
+]    ]
   }
 ]        "label": "THE_DATA"
       },
