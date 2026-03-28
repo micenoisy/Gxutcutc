@@ -1,89 +1,77 @@
 [
-{
-"original_file": "Clavicular Crying.mp4",
-"gdrive_url": "https://drive.google.com/file/d/1SD6xt0L_yYTg9ibOizyocvdF9K7A6ZyZ/view?usp=drivesdk",
-"new_title": "Crying Over Cheesef et #viralitypoly #trending #clips.mp4",
-"frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2",
-"segments": [
-{
-"start": "00:00:29.120",
-"end": "00:00:34.440",
-"label": "THE_HOOK"
-},
-{
-"start": "00:00:00.000",
-"end": "00:00:19.160",
-"label": "THE_CONTEXT"
-},
-{
-"start": "00:00:23.600",
-"end": "00:00:28.840",
-"label": "THE_PROOF"
-},
-{
-"start": "00:00:38.320",
-"end": "00:00:55.720",
-"label": "THE_PAYOFF"
-}
-],
-"captions": [
-{ "start": 0.0, "end": 0.84, "text": "MORE CHEESE! 🧀" },
-{ "start": 0.84, "end": 3.08, "text": "HE BROKE DOWN CRYING 😭" },
-{ "start": 3.08, "end": 5.32, "text": "OVER A CHEESEBURGER! 🍔" },
-{ "start": 5.32, "end": 8.8, "text": "SO THIS DUDE CLVIGILLER 🧑‍💻" },
-{ "start": 8.8, "end": 11.64, "text": "ANNOUNCED A 30-DAY STREAM 📺" },
-{ "start": 11.64, "end": 14.28, "text": "NON-STOP 24/7! ⏰" },
-{ "start": 14.28, "end": 17.28, "text": "STARTING IN 3 DAYS! 🗓️" },
-{ "start": 17.28, "end": 20.24, "text": "AND WHAT'S CRAZY IS 🤯" },
-{ "start": 20.24, "end": 24.48, "text": "56% CHANCE HE CRIES! 😢" },
-{ "start": 24.48, "end": 26.0, "text": "I DID SOME DIGGING 🕵️" },
-{ "start": 26.0, "end": 29.72, "text": "HE ALREADY CRIED ON STREAM! 😭" },
-{ "start": 29.72, "end": 33.92, "text": "SO AT 56% ODDS 🎲" },
-{ "start": 33.92, "end": 35.28, "text": "56 PERCENT ODDS! 📈" },
-{ "start": 35.28, "end": 39.68, "text": "IF WE BET $5,000 💰" },
-{ "start": 39.68, "end": 42.32, "text": "ON A MENTAL BREAKDOWN 🤯" },
-{ "start": 42.32, "end": 45.16, "text": "WE WIN $4,400! 💵" },
-{ "start": 45.16, "end": 47.12, "text": "HOW IS THIS FREE?! 🤑" }
-]
-},
-{
-"original_file": "Clavicular Crying.mp4",
-"gdrive_url": "https://drive.google.com/file/d/1SD6xt0L_yYTg9ibOizyocvdF9K7A6ZyZ/view?usp=drivesdk",
-"new_title": "Free_Money_Mental_Breakdown_#viralitypoly_#trending_#clips.mp4",
-"frame_filter": "crop=w=ih*9/16:h=ih:x=(iw-ow)/2",
-"segments": [
-{
-"start": "00:00:43.880",
-"end": "00:00:55.720",
-"label": "THE_HOOK"
-},
-{
-"start": "00:00:00.000",
-"end": "00:00:19.160",
-"label": "THE_CONTEXT"
-},
-{
-"start": "00:00:23.600",
-"end": "00:00:34.440",
-"label": "THE_PROOF"
-}
-],
-"captions": [
-{ "start": 0.0, "end": 4.4, "text": "IF WE BET $5,000 💰" },
-{ "start": 4.4, "end": 7.04, "text": "ON A MENTAL BREAKDOWN 🤯" },
-{ "start": 7.04, "end": 9.88, "text": "WE WIN $4,400! 💵" },
-{ "start": 9.88, "end": 11.84, "text": "HOW IS THIS FREE?! 🤑" },
-{ "start": 11.84, "end": 15.32, "text": "SO THIS DUDE CLVIGILLER 🧑‍💻" },
-{ "start": 15.32, "end": 18.16, "text": "ANNOUNCED A 30-DAY STREAM 📺" },
-{ "start": 18.16, "end": 20.8, "text": "NON-STOP 24/7! ⏰" },
-{ "start": 20.8, "end": 23.8, "text": "STARTING IN 3 DAYS! 🗓️" },
-{ "start": 23.8, "end": 26.76, "text": "AND WHAT'S CRAZY IS 🤯" },
-{ "start": 26.76, "end": 31.0, "text": "56% CHANCE HE CRIES! 😢" },
-{ "start": 31.0, "end": 32.6, "text": "I DID SOME DIGGING 🕵️" },
-{ "start": 32.6, "end": 36.24, "text": "HE ALREADY CRIED! 😭" },
-{ "start": 36.24, "end": 37.08, "text": "MORE CHEESE! 🧀" },
-{ "start": 37.08, "end": 39.32, "text": "HE BROKE DOWN CRYING 😭" },
-{ "start": 39.32, "end": 41.84, "text": "OVER A CHEESEBURGER! 🍔" }
-]
-}
+  {
+    "original_file": "CHICOF1POLYMARKET.mp4",
+    "gdrive_url": "https://drive.google.com/file/d/1LCzmUP1bd7-cfe9l8pT0yZPr8Vg5K1dL/view?usp=drivesdk",
+    "new_title": "F1_Free_Money_Glitch_#viralitypoly_#trending_#clips.mp4",
+    "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
+    "segments": [
+      { "start": "00:00:00.000", "end": "00:00:05.760", "label": "THE_HOOK" },
+      { "start": "00:00:14.840", "end": "00:00:18.920", "label": "THE_CONTEXT" },
+      { "start": "00:00:24.280", "end": "00:00:28.040", "label": "THE_PAYOFF" }
+    ],
+    "captions": [
+      { "start": 0.0, "end": 1.5, "text": "WANT FREE MONEY? 💸" },
+      { "start": 1.5, "end": 3.22, "text": "BUY IN ON POLYMARKET! 📈" },
+      { "start": 3.22, "end": 5.76, "text": "WHO TAKES F1 CHAMPION? 🏎️" },
+      { "start": 5.76, "end": 7.8, "text": "ONLY TWO WINNERS! ✌️" },
+      { "start": 7.8, "end": 9.84, "text": "RUSSELL OR ANTONELLI! 🏁" },
+      { "start": 9.84, "end": 11.72, "text": "A $1,000 BET... 💰" },
+      { "start": 11.72, "end": 13.6, "text": "WILL MAKE 1.5K! 🤑" }
+    ]
+  },
+  {
+    "original_file": "ChicoFilo -part 1- G2 vs BLG League Of Legends - WHAT G2 isnt favorites? mp4.mp4",
+    "gdrive_url": "https://drive.google.com/file/d/12ZvAWj-xggpEDHabioS_6Hc1Z3mW4uRv/view?usp=drivesdk",
+    "new_title": "G2_Are_Underdogs_#viralitypoly_#trending_#clips.mp4",
+    "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
+    "segments": [
+      { "start": "00:00:15.500", "end": "00:00:20.980", "label": "THE_HOOK" },
+      { "start": "00:00:24.780", "end": "00:00:26.780", "label": "THE_CONTEXT" },
+      { "start": "00:00:00.000", "end": "00:00:06.140", "label": "THE_OPINION" }
+    ],
+    "captions": [
+      { "start": 0.0, "end": 2.5, "text": "G2 VS BLG?! ⚔️" },
+      { "start": 2.5, "end": 5.48, "text": "WHY ONLY 28 CENTS? 🤯" },
+      { "start": 5.48, "end": 7.48, "text": "THEY SWEPT GEN G! 🧹" },
+      { "start": 7.48, "end": 10.5, "text": "TO WIN IT ALL... 🏆" },
+      { "start": 10.5, "end": 13.62, "text": "I THINK THEY'RE FAVORITES! 🔥" }
+    ]
+  },
+  {
+    "original_file": "ChicoFilo part 3 G2 vs BLG if we win we buy CS cases.mp4",
+    "gdrive_url": "https://drive.google.com/file/d/15GsEX4bkCPoPU1t6p6TtTwKMsB3OGDbq/view?usp=drivesdk",
+    "new_title": "CSGO_Cases_Bet_#viralitypoly_#trending_#clips.mp4",
+    "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
+    "segments": [
+      { "start": "00:00:00.000", "end": "00:00:07.520", "label": "THE_HOOK" },
+      { "start": "00:00:11.520", "end": "00:00:18.720", "label": "THE_CONTEXT" }
+    ],
+    "captions": [
+      { "start": 0.0, "end": 2.5, "text": "WORST CS CASE? 📦" },
+      { "start": 2.5, "end": 5.0, "text": "IF WE WIN THIS BET... 🎲" },
+      { "start": 5.0, "end": 7.52, "text": "WE BUY CS CASES! 🔫" },
+      { "start": 7.52, "end": 10.0, "text": "HOW ABOUT THAT? DONE! 🤝" },
+      { "start": 10.0, "end": 12.0, "text": "YEAH WE'LL PLAY IT! 🎮" },
+      { "start": 12.0, "end": 14.72, "text": "WE CAN BUY A FEW! 🤑" }
+    ]
+  },
+  {
+    "original_file": "ChicoFilo thoughts on March Madness.mp4",
+    "gdrive_url": "https://drive.google.com/file/d/1UXkbvR68Xgtp6dve4JItcNaftPq1-q8S/view?usp=drivesdk",
+    "new_title": "March_Madness_Florida_Bet_#viralitypoly_#trending_#clips.mp4",
+    "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
+    "segments": [
+      { "start": "00:01:21.440", "end": "00:01:31.120", "label": "THE_HOOK" },
+      { "start": "00:00:26.280", "end": "00:00:28.280", "label": "THE_CONTEXT" },
+      { "start": "00:00:14.640", "end": "00:00:18.400", "label": "THE_DATA" }
+    ],
+    "captions": [
+      { "start": 0.0, "end": 3.0, "text": "FLORIDA WON LAST YEAR! 🐊" },
+      { "start": 3.0, "end": 6.5, "text": "WILL THEY ADVANCE AGAIN? 🏀" },
+      { "start": 6.5, "end": 9.68, "text": "WAIT WHAT?! 🤯" },
+      { "start": 9.68, "end": 11.68, "text": "INVEST IN FLORIDA! 📈" },
+      { "start": 11.68, "end": 13.5, "text": "ONLY 10 CENTS A SHARE! 🪙" },
+      { "start": 13.5, "end": 15.44, "text": "SUBSCRIBE FOR MORE! 👇" }
+    ]
+  }
 ]
