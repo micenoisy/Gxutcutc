@@ -1,51 +1,60 @@
-name: 🎬 AI Production - Ultra Fast Mode
+name: ⚡ AI Titan Agent - High Engagement
 on:
   push:
-    paths: [ 'master_config.json' ]
+    paths: [ 'master_config.json', 'analyze_config.json' ]
+
 jobs:
-  build:
-    runs-on: ubuntu-latest # Standard runner is much faster than slim docker
+  titan-process:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           lfs: true
 
-      # STEP 1: DOWNLOAD VIDEOS FIRST (As you requested)
-      - name: Download Videos First
+      - name: 📥 Smart Download (No Duplicates)
         run: |
           pip install gdown
-          mkdir -p input
-          mkdir -p output
-          python3 -c "import gdown, json, os; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output='input/', quiet=False, fuzzy=True) for j in jobs if 'gdrive_url' in j]"
+          mkdir -p input output reports
+          # Logic: Use a Set to ensure each URL is only downloaded once
+          python3 -c "import gdown, json, os; \
+            configs = ['master_config.json', 'analyze_config.json']; \
+            urls = set(); \
+            for c in configs: \
+                if os.path.exists(c): \
+                    data = json.load(open(c)); \
+                    for j in data: \
+                        if 'gdrive_url' in j: urls.add(j['gdrive_url']); \
+                        if 'url' in j: urls.add(j['url']); \
+            [gdown.download(url, output='input/', quiet=False, fuzzy=True) for url in urls]"
 
-      # STEP 2: SETUP CACHE (This is the "1-second" fix)
-      - name: Set up Python
+      - name: 🐍 Setup Pro Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
-          cache: 'pip' # Automatically caches all pip libraries
+          python-version: '3.10'
+          cache: 'pip'
 
-      - name: Cache Whisper Model
+      - name: 💎 Cache AI Models
         uses: actions/cache@v4
         with:
           path: ~/.cache/whisper
-          key: whisper-base-model-v2
+          key: whisper-titan-v1
 
-      # STEP 3: INSTALL TOOLS (Will be instant after 1st run)
-      - name: Install Dependencies
+      - name: 🛠️ Install Titan Tools
         run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg
-          pip install openai-whisper gdown yt-dlp
+          sudo apt-get update && sudo apt-get install -y ffmpeg git
+          pip install openai-whisper moviepy yt-dlp gdown
 
-      # STEP 4: PROCESS
-      - name: Process Clips
+      - name: 🧠 Run Intelligence Phase
+        run: python3 scripts/analyzer.py
+
+      - name: 🎬 Run Production Phase
         run: python3 scripts/processor.py
 
-      # STEP 5: SAVE (Fixed Git error)
-      - name: Save Results
+      - name: 🚀 Deploy Viral Content
         run: |
-          git config --global user.name "AI-Agent"
-          git config --global user.email "agent@github.com"
-          git add output/
-          git commit -m "Viral batch #viralitypoly" || echo "No changes"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global user.name "Titan-AI-Agent"
+          git config --global user.email "titan@viralitypoly.ai"
+          git add output/ reports/
+          git commit -m "Titan Batch Processed #viralitypoly" || echo "No changes"
           git push
