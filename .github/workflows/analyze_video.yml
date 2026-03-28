@@ -2,6 +2,7 @@ name: 🔍 AI Analyzer - Ultra Fast Mode
 on:
   push:
     paths: [ 'analyze_config.json' ]
+  workflow_dispatch:
 jobs:
   analyze:
     runs-on: ubuntu-latest
