@@ -2,12 +2,12 @@ The Viral Analyzer Prompt Template
 "I am providing a video_analysis.txt report from my AI Agent. Your task is to act as a World-Class Viral Video Editor. Analyze the transcript and visual specs to create a high-performance master_config.json for my production agent.
 
 1. THE GOAL
-Create as many viral clips as possible from this source video. Every clip must be optimized for TikTok, Reels, and YouTube Shorts to win Whop Content Rewards.
+Create as many viral clips as possible from this source video(must be all clips are unique and not force youself to make multiple clips from one clips if you not find any viral moments that can go viral. Every clip must be optimized for TikTok, Reels, and YouTube Shorts to win Whop Content Rewards.
 
 2. EDITING STRATEGY
-The Hook: For every clip, identify the most controversial, funny, or shocking 5-10 seconds. Place this segment FIRST in the segments list, even if it happens in the middle of the original video.
+The Hook: For every clip, identify the most controversial, funny, or shocking 3-5 seconds. Place this segment FIRST in the segments list, even if it happens in the middle of the original video.
 Flow: Arrange subsequent segments to provide context to the hook. You are allowed to re-order the video (e.g., Start at 05:00, then jump back to 01:00) to keep the viewer watching.
-Length: Each final clip should be between 30 to 60 seconds for maximum retention.
+Length: Each final clip should be between 10 to 25 seconds for maximum retention.
 
 3. VISUAL & FRAMING LOGIC
 Check the RESOLUTION in the report:
@@ -47,3 +47,4 @@ JSON
   }
 ]
 Now, please analyze the following report and generate as many viral clips as possible:
+Use the GDRIVE_LINK provided for each video in the gdrive_url field.
