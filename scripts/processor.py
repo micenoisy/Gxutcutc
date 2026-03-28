@@ -1,71 +1,73 @@
 import json, subprocess, os
 
 os.makedirs("output", exist_ok=True)
+os.makedirs("input", exist_ok=True)
 
 with open('master_config.json') as f:
     jobs = json.load(f)
 
-for job in jobs:
+# Global Cleanup List
+raw_videos = []
+
+for task_idx, job in enumerate(jobs):
     if "__AI_GUIDE__" in job: continue
     
-    # Smart File Matching
+    # REUSE LOGIC: Find existing file or fail
     input_files = [f for f in os.listdir("input") if f.lower().endswith(('.mp4', '.mkv', '.mov'))]
-    input_path = None
-    for f in input_files:
-        if f.lower() in job['original_file'].lower() or job['original_file'].lower() in f.lower():
-            input_path = os.path.join("input", f)
-            break
+    input_path = os.path.join("input", input_files[0]) # Simplest reuse
+    raw_videos.append(input_path)
 
-    if not input_path: continue
-    print(f"🎬 Titan Producing: {job['new_title']}")
-
+    print(f"🎬 Task {task_idx}: Processing {job['new_title']}")
+    
+    # Custom Styling from JSON
+    res = job.get('target_resolution', "1080:1920")
+    f_color = job.get('font_color', "black")
+    b_color = job.get('bg_color', "white")
+    y_pos = job.get('caption_y_pos', "ih-450")
+    
     segment_files = []
     durations = []
     
-    # ADVANCED: Layout Logic from JSON
-    vf_base = job.get('frame_filter', "crop=w=ih*9/16:h=ih:x=(iw-ow)/2")
-    
     for i, seg in enumerate(job['segments']):
-        out_seg = f"titan_t{i}.mp4"
-        # Standardize everything to 1080x1920 30fps for Social Media
-        full_vf = f"{vf_base},scale=1080:1920,fps=30"
+        temp_seg = f"task{task_idx}_seg{i}.mp4"
+        vf = f"{job.get('frame_filter', 'scale=1080:1920')},fps=30"
         
-        cmd = ["ffmpeg", "-y", "-ss", seg['start'], "-to", seg['end'], "-i", input_path, "-vf", full_vf, "-c:v", "libx264", "-crf", "17", "-preset", "slow", out_seg]
-        subprocess.run(cmd)
+        subprocess.run(["ffmpeg", "-y", "-ss", seg['start'], "-to", seg['end'], "-i", input_path, "-vf", vf, "-c:v", "libx264", "-crf", "18", "-preset", "ultrafast", temp_seg])
         
-        if os.path.exists(out_seg):
-            dur = subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", out_seg]).decode().strip()
+        if os.path.exists(temp_seg):
+            dur = subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", temp_seg]).decode().strip()
             durations.append(float(dur))
-            segment_files.append(out_seg)
+            segment_files.append(temp_seg)
 
     if not segment_files: continue
+    list_file = f"list_{task_idx}.txt"
+    with open(list_file, "w") as f: [f.write(f"file '{s}'\n") for s in segment_files]
     
-    # Join Segments
-    list_f = "join.txt"
-    with open(list_f, "w") as f:
-        for s in segment_files: f.write(f"file '{s}'\n")
-    combined = "combined.mp4"
-    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", list_f, "-c", "copy", combined])
+    combined = f"combined_{task_idx}.mp4"
+    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", list_file, "-c", "copy", combined])
 
-    # KINETIC CAPTIONS: Black on White with Dynamic Persistence
+    # CAPTION ENGINE: PERSISTENT WHITE BAR + CUSTOM COLORS
     cap_filters = []
-    caps = job.get('captions', [])
-    for idx, c in enumerate(caps):
-        txt = c['text'].replace("'", "").upper().strip()
+    source_caps = job.get('captions', [])
+    for j, c in enumerate(source_caps):
+        txt = c['text'].replace("'", "").upper()
         start = float(c['start'])
-        # Persistence: Auto-extend until next caption or end of video
-        end = float(caps[idx+1]['start']) if idx+1 < len(caps) else sum(durations)
+        # Persistence: stays until next caption
+        end = float(source_caps[j+1]['start']) if j+1 < len(source_caps) else sum(durations)
         
-        # UI/UX: Professional lower-third bar
-        draw_bar = f"drawbox=y=ih-480:color=white@1:width=iw:height=150:t=fill:enable='between(t,{start},{end})'"
-        draw_txt = f"drawtext=text='{txt}':fontcolor=black:fontsize=60:font='Verdana-Bold':x=(w-text_w)/2:y=h-435:enable='between(t,{start},{end})'"
+        draw_bar = f"drawbox=y={y_pos}:color={b_color}@1:width=iw:height=140:t=fill:enable='between(t,{start},{end})'"
+        draw_txt = f"drawtext=text='{txt}':fontcolor={f_color}:fontsize=55:x=(w-text_w)/2:y={y_pos}+35:enable='between(t,{start},{end})'"
         cap_filters.extend([draw_bar, draw_txt])
 
-    final_out = f"output/{job['new_title']}"
-    subprocess.run(["ffmpeg", "-y", "-i", combined, "-vf", ",".join(cap_filters), "-c:a", "aac", "-b:a", "192k", final_out])
+    final_output = f"output/{job['new_title']}"
+    subprocess.run(["ffmpeg", "-y", "-i", combined, "-vf", ",".join(cap_filters), "-c:a", "copy", final_output])
     
-    # Cleanup
+    # Task Cleanup
     for s in segment_files: os.remove(s)
-    os.remove(list_f); os.remove(combined)
+    os.remove(list_file); os.remove(combined)
 
-print("🚀 TITAN AGENT: BATCH COMPLETE #viralitypoly")
+# Final raw video cleanup
+for f in set(raw_videos):
+    if os.path.exists(f): os.remove(f)
+
+print("🚀 ALL TASKS COMPLETED #viralitypoly")
