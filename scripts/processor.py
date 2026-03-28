@@ -80,4 +80,4 @@ for task_idx, job in enumerate(jobs):
 for f in set(files_to_cleanup):
     if os.path.exists(f): os.remove(f)
 
-print("🚀 ALL TASKS FINISHED #viralitypoly")print("🚀 ALL TASKS COMPLETED #viralitypoly")
+print("🚀 ALL TASKS FINISHED #viralitypoly")
