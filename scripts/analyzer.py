@@ -1,35 +1,42 @@
-import whisper, subprocess, os, json
+import whisper, os, json, subprocess
 
-def get_pro_metadata(path):
-    cmd = f"ffprobe -v error -select_streams v:0 -show_entries stream=width,height,avg_frame_rate,bit_rate -of json \"{path}\""
-    return json.loads(subprocess.check_output(cmd, shell=True).decode())['streams'][0]
+def get_video_info(path):
+    cmd = f"ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of json \"{path}\""
+    output = subprocess.check_output(cmd, shell=True).decode()
+    return json.loads(output)['streams'][0]
 
-print("🧠 Starting Titan Analysis...")
-model = whisper.load_model("medium") # Upgraded to Medium for better accuracy
+os.makedirs("reports", exist_ok=True)
+model = whisper.load_model("base")
 
-files = [f for f in os.listdir("input") if f.lower().endswith(('.mp4', '.mkv', '.mov'))]
-report_path = "reports/titan_analysis_report.txt"
+with open('analyze_config.json') as f:
+    jobs = json.load(f)
 
-with open(report_path, "w") as r:
-    for f_name in files:
-        path = os.path.join("input", f_name)
-        meta = get_pro_metadata(path)
-        
-        print(f"🎙️ Deep Transcribing: {f_name}")
-        # Task='transcribe' with word_timestamps for micro-precision
-        result = model.transcribe(path, word_timestamps=True)
-        
-        r.write(f"VIDEO_ID: {f_name}\n")
-        r.write(f"PRO_SPECS: {meta['width']}x{meta['height']} @ {meta['avg_frame_rate']}fps\n")
-        r.write("--- SURGICAL TIMELINE (MICROSECONDS) ---\n")
-        
-        for s in result['segments']:
-            # Calculate 'Energy Score' based on average probability
-            energy = "HIGH" if s['avg_logprob'] > -0.5 else "LOW"
-            r.write(f"[{s['start']:.4f} -> {s['end']:.4f}] [ENERGY: {energy}] {s['text'].strip()}\n")
-            
-            # Silence Detection: If gap between segments > 1.5s, mark it as a cut point
-            # (Logic handled by LLM AI in next step)
-        r.write("\n" + "="*70 + "\n\n")
+report_path = "reports/precision_report.txt"
+with open(report_path, "w") as f: f.write("=== SURGICAL WORD ANALYSIS ===\n")
 
-print(f"✅ Titan Report Generated: {report_path}")
+for job in jobs:
+    # Auto-detect file in input/
+    input_files = [f for f in os.listdir("input") if f.lower().endswith(('.mp4', '.mkv', '.mov'))]
+    target_file = None
+    for f in input_files:
+        if f.lower() in job['url'].lower() or len(input_files) == 1:
+            target_file = os.path.join("input", f)
+            break
+    
+    if not target_file: continue
+
+    print(f"🎙️ Extracting Microseconds: {target_file}")
+    info = get_video_info(target_file)
+    # word_timestamps=True is the key for surgical editing
+    result = model.transcribe(target_file, word_timestamps=True)
+
+    with open(report_path, "a") as f:
+        f.write(f"\nVIDEO: {target_file}\nLINK: {job['url']}\nRES: {info['width']}x{info['height']}\n")
+        for segment in result['segments']:
+            f.write(f"\n--- Segment [Energy: {segment['avg_logprob']:.2f}] ---\n")
+            for word in segment['words']:
+                # WORD | START | END (Microsecond Precision)
+                f.write(f"{word['word'].strip().upper():<15} | {word['start']:>8.3f}s | {word['end']:>8.3f}s\n")
+        f.write("\n" + "="*50 + "\n")
+
+print("✅ Analysis Complete.")
