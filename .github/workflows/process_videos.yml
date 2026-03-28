@@ -8,10 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download Videos
+      - name: Download Videos First
         run: |
           pip install gdown
           mkdir -p input
+          mkdir -p output
           python3 -c "import gdown, json, os; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output='input/', quiet=False, fuzzy=True) for j in jobs if 'gdrive_url' in j]"
 
       - name: Set up Python
@@ -20,17 +21,24 @@ jobs:
           python-version: '3.9'
           cache: 'pip'
 
-      - name: Install System Tools
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg git
+      - name: Cache Whisper Model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/whisper
+          key: whisper-base-model-v3
+
+      - name: Install Tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg git
+          pip install openai-whisper gdown yt-dlp
 
       - name: Process Clips
         run: python3 scripts/processor.py
 
       - name: Save Results
         run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --global user.name "AI-Agent"
           git config --global user.email "agent@github.com"
-          git add output/
-          git commit -m "Viral batch #viralitypoly" || echo "No changes"
+          git add output/*.mp4
+          git commit -m "Viral batch processed #viralitypoly" || echo "No changes"
           git push
