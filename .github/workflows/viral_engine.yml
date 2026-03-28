@@ -1,0 +1,26 @@
+name: 🚀 Viral Engine v3.0 - High Engagement
+on:
+  push:
+    paths: [ 'master_config.json' ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: viral-pip-v1
+      - name: Install Tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install openai-whisper gdown yt-dlp
+      - name: Run Production
+        run: python3 scripts/core_engine.py
+      - name: Save Viral Clips
+        run: |
+          git config --global user.name "Viral-Agent"
+          git add output/
+          git commit -m "New Viral Drop #viralitypoly" || echo "No changes"
+          git push
