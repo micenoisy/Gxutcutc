@@ -8,11 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download Video First
+      - name: Download Videos First
         run: |
           pip install gdown
           mkdir -p input
-          python3 -c "import gdown, json, os; links = json.load(open('analyze_config.json')); [gdown.download(l['url'], output='input/', quiet=False, fuzzy=True) for l in links]"
+          python3 -c "import gdown, json, os; jobs = json.load(open('analyze_config.json')); [gdown.download(j['url'], output='input/', quiet=False, fuzzy=True) for j in jobs]"
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -31,11 +31,19 @@ jobs:
           sudo apt-get update && sudo apt-get install -y ffmpeg
           pip install openai-whisper gdown
 
-      - name: Run Analysis
+      - name: Run Batch Analysis
         run: python3 scripts/analyzer.py
 
-      - name: Upload Report
+      # NEW: This prints the text directly to the GitHub Action Summary page
+      - name: Display Report in Summary
+        run: |
+          echo "### 📄 Master Analysis Report" >> $GITHUB_STEP_SUMMARY
+          echo '```text' >> $GITHUB_STEP_SUMMARY
+          cat reports/master_analysis.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload Report (Backup)
         uses: actions/upload-artifact@v4
         with:
-          name: analysis-report
-          path: reports/
+          name: master-analysis-report
+          path: reports/master_analysis.txt
