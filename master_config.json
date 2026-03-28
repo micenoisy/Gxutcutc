@@ -5,7 +5,7 @@
 "new_title": "F1_Free_Money_Glitch_#viralitypoly_#trending.mp4",
 "target_resolution": "1080:1920",
 "frame_filter": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920",
-"caption_y_pos": "ih-450",
+"caption_y_pos": "h-450",
 "font_color": "black",
 "bg_color": "white",
 "segments": [
@@ -28,7 +28,7 @@
 "new_title": "G2_Are_Underdogs_#viralitypoly_#leagueoflegends.mp4",
 "target_resolution": "1080:1920",
 "frame_filter": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920",
-"caption_y_pos": "ih-450",
+"caption_y_pos": "h-450",
 "font_color": "black",
 "bg_color": "white",
 "segments": [
@@ -50,7 +50,7 @@
 "new_title": "March_Madness_Cheat_Code_#viralitypoly_#collegehoops.mp4",
 "target_resolution": "1080:1920",
 "frame_filter": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920",
-"caption_y_pos": "ih-450",
+"caption_y_pos": "h-450",
 "font_color": "black",
 "bg_color": "white",
 "segments": [
