@@ -1,4 +1,4 @@
-name: 🔍 AI Analyzer - Max Cache Mode
+name: 🔍 AI Analyzer - Ultra Fast Mode
 on:
   push:
     paths: [ 'analyze_config.json' ]
@@ -8,28 +8,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. DOWNLOAD FIRST (Reuse logic)
-      - name: Download Videos
+      - name: Download Videos First
         run: |
           pip install gdown
           mkdir -p input
           python3 -c "import gdown, json, os; jobs = json.load(open('analyze_config.json')); [gdown.download(j['url'], output='input/', quiet=False, fuzzy=True) for j in jobs]"
 
-      # 2. MAX CACHE: Python & Pip
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
           cache: 'pip'
 
-      # 3. MAX CACHE: Whisper AI Model
       - name: Cache Whisper Model
         uses: actions/cache@v4
         with:
           path: ~/.cache/whisper
-          key: whisper-base-v3
+          key: whisper-base-model-v3
 
-      - name: Install Tools
+      - name: Install Heavy Tools
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg
           pip install openai-whisper gdown
@@ -40,6 +37,13 @@ jobs:
       - name: Display Report in Summary
         run: |
           echo "### 📄 MICROSECOND WORD REPORT" >> $GITHUB_STEP_SUMMARY
+          echo "Copy the text below for your Viral Master JSON AI Agent:" >> $GITHUB_STEP_SUMMARY
           echo '```text' >> $GITHUB_STEP_SUMMARY
           cat reports/precision_report.txt >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload Report (Backup)
+        uses: actions/upload-artifact@v4
+        with:
+          name: master-analysis-report
+          path: reports/precision_report.txt
