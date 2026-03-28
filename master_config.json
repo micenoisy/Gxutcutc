@@ -2,89 +2,97 @@
   {
     "original_file": "CHICOF1POLYMARKET.mp4",
     "gdrive_url": "https://drive.google.com/file/d/1LCzmUP1bd7-cfe9l8pT0yZPr8Vg5K1dL/view?usp=drivesdk",
-    "new_title": "FREE MONEY F1 STRATEGY 😱 #viralitypoly_#trending_#f1.mp4",
-    "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
-    "segments": [
-      { "start": "00:00:00.000", "end": "00:00:03.220", "label": "THE_HOOK" },
-      { "start": "00:00:03.220", "end": "00:00:08.520", "label": "THE_CONTEXT" },
-      { "start": "00:00:12.240", "end": "00:00:18.920", "label": "THE_CONTEXT" }
-    ],
-    "captions": [
-      { "start": 0.0, "end": 2.5, "text": "FREE MONEY STRATEGY 😱" },
-      { "start": 2.5, "end": 5.0, "text": "BETTING ON F1 WINNER 📈" },
-      { "start": 5.0, "end": 7.5, "text": "GEORGE RUSSELL SPIKING 🚀" },
-      { "start": 7.5, "end": 10.5, "text": "MERCEDES DOMINATING 💀" },
-      { "start": 10.5, "end": 13.5, "text": "ONLY 2 WINNERS LEFT 😳" }
-    ]
-  },
-  {
-    "original_file": "CHICOF1POLYMARKET.mp4",
-    "gdrive_url": "https://drive.google.com/file/d/1LCzmUP1bd7-cfe9l8pT0yZPr8Vg5K1dL/view?usp=drivesdk",
-    "new_title": "THIS BET CAN 1.5X YOUR MONEY 💰 #viralitypoly_#trending_#f1.mp4",
+    "new_title": "FREE_MONEY_F1_STRATEGY_#viralitypoly_#trending_#f1.mp4",
+    "target_resolution": "1080:1920",
+    "caption_y_pos": "ih-450",
+    "font_color": "black",
+    "bg_color": "white",
     "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
       { "start": "00:00:24.280", "end": "00:00:28.040", "label": "THE_HOOK" },
-      { "start": "00:00:28.040", "end": "00:00:35.280", "label": "THE_CONTEXT" },
-      { "start": "00:00:35.280", "end": "00:00:41.160", "label": "THE_CONTEXT" }
+      { "start": "00:00:00.000", "end": "00:00:15.000", "label": "THE_CONTEXT" }
     ],
     "captions": [
-      { "start": 0.0, "end": 2.5, "text": "$1000 = $1500 😳" },
-      { "start": 2.5, "end": 5.0, "text": "THIS ALREADY SPIKED 📈" },
-      { "start": 5.0, "end": 7.5, "text": "MORE THAN DOUBLED 🚀" },
-      { "start": 7.5, "end": 10.5, "text": "IT’S STILL GOING UP 💰" },
-      { "start": 10.5, "end": 13.5, "text": "RISK VS REWARD 👀" }
+      { "start": 0.0, "end": 2.5, "text": "WANT FREE MONEY? 💸" },
+      { "start": 2.5, "end": 5.0, "text": "BUY IN ON POLYMARKET! 📈" },
+      { "start": 5.0, "end": 7.5, "text": "GEORGE RUSSELL SPIKING 🚀" },
+      { "start": 7.5, "end": 10.5, "text": "MERCEDES DOMINATING 💀" }
     ]
   },
   {
-    "original_file": "ChicoFilo -part 1- G2 vs BLG League Of Legends - WHAT G2 isnt favorites? mp4.mp4",
-    "gdrive_url": "https://drive.google.com/file/d/15GsEX4bkCPoPU1t6p6TtTwKMsB3OGDbq/view?usp=drivesdk",
-    "new_title": "G2 AT 28 CENTS?! 🤯 #viralitypoly_#trending_#esports.mp4",
+    "original_file": "ChicoFilo -part 1- G2 vs BLG.mp4",
+    "gdrive_url": "https://drive.google.com/file/d/12ZvAWj-xggpEDHabioS_6Hc1Z3mW4uRv/view?usp=drivesdk",
+    "new_title": "G2_ONLY_28_CENTS_🤯_#viralitypoly_#esports.mp4",
+    "target_resolution": "1080:1920",
+    "caption_y_pos": "ih-450",
+    "font_color": "black",
+    "bg_color": "white",
     "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
       { "start": "00:00:15.500", "end": "00:00:20.980", "label": "THE_HOOK" },
-      { "start": "00:00:24.780", "end": "00:00:26.780", "label": "THE_CONTEXT" },
-      { "start": "00:00:49.560", "end": "00:00:56.640", "label": "THE_CONTEXT" }
+      { "start": "00:00:00.000", "end": "00:00:10.000", "label": "THE_CONTEXT" }
     ],
     "captions": [
       { "start": 0.0, "end": 2.5, "text": "G2 ONLY 28 CENTS?! 🤯" },
-      { "start": 2.5, "end": 5.0, "text": "THIS MAKES NO SENSE 💀" },
-      { "start": 5.0, "end": 7.5, "text": "THEY SWEPT GEN.G 😳" },
-      { "start": 7.5, "end": 10.5, "text": "IS THIS FREE VALUE? 📈" },
-      { "start": 10.5, "end": 13.5, "text": "I’M NOT EVEN SURE 🤔" }
+      { "start": 2.5, "end": 5.48, "text": "THIS MAKES NO SENSE 💀" },
+      { "start": 5.48, "end": 8.0, "text": "THEY SWEPT GEN.G 😳" }
+    ]
+  },
+  {
+    "original_file": "ChicoFilo part 3 G2 vs BLG.mp4",
+    "gdrive_url": "https://drive.google.com/file/d/15GsEX4bkCPoPU1t6p6TtTwKMsB3OGDbq/view?usp=drivesdk",
+    "new_title": "CSGO_CASES_BET_🎲_#viralitypoly_#csgo.mp4",
+    "target_resolution": "1080:1920",
+    "caption_y_pos": "ih-450",
+    "font_color": "black",
+    "bg_color": "white",
+    "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
+    "segments": [
+      { "start": "00:00:02.000", "end": "00:00:07.520", "label": "THE_HOOK" },
+      { "start": "00:00:11.520", "end": "00:00:20.000", "label": "THE_CONTEXT" }
+    ],
+    "captions": [
+      { "start": 0.0, "end": 2.5, "text": "IF WE WIN THIS G2 BET... 🎲" },
+      { "start": 2.5, "end": 5.52, "text": "WE BUY CS CASES! 🔫" },
+      { "start": 5.52, "end": 8.0, "text": "HOW ABOUT THAT? DONE! 🤝" }
     ]
   },
   {
     "original_file": "ChicoFilo thoughts on March Madness.mp4",
     "gdrive_url": "https://drive.google.com/file/d/1UXkbvR68Xgtp6dve4JItcNaftPq1-q8S/view?usp=drivesdk",
-    "new_title": "FLORIDA AT 10 CENTS?! 🚀 #viralitypoly_#trending_#marchmadness.mp4",
+    "new_title": "FLORIDA_AT_10_CENTS_🚀_#viralitypoly_#basketball.mp4",
+    "target_resolution": "1080:1920",
+    "caption_y_pos": "ih-450",
+    "font_color": "black",
+    "bg_color": "white",
     "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
       { "start": "00:00:14.640", "end": "00:00:18.400", "label": "THE_HOOK" },
-      { "start": "00:00:19.640", "end": "00:00:23.140", "label": "THE_CONTEXT" },
-      { "start": "00:00:26.280", "end": "00:00:31.120", "label": "THE_CONTEXT" }
+      { "start": "00:00:00.000", "end": "00:00:10.000", "label": "THE_CONTEXT" }
     ],
     "captions": [
       { "start": 0.0, "end": 2.5, "text": "ONLY 10 CENTS?! 😱" },
       { "start": 2.5, "end": 5.0, "text": "THIS COULD EXPLODE 📈" },
-      { "start": 5.0, "end": 7.5, "text": "FINAL FOUR = BIG GAINS 💰" },
-      { "start": 7.5, "end": 10.5, "text": "YOU MIGHT NEED THIS 👀" },
-      { "start": 10.5, "end": 13.5, "text": "DON’T MISS IT 🚀" }
+      { "start": 5.0, "end": 7.5, "text": "FINAL FOUR = BIG GAINS 💰" }
     ]
   },
   {
     "original_file": "ChicoFilo thoughts on March Madness.mp4",
     "gdrive_url": "https://drive.google.com/file/d/1UXkbvR68Xgtp6dve4JItcNaftPq1-q8S/view?usp=drivesdk",
-    "new_title": "KANSAS AT 1% IS CRAZY 🤯 #viralitypoly_#trending_#basketball.mp4",
+    "new_title": "KANSAS_AT_1_PERCENT_🤯_#viralitypoly_#basketball.mp4",
+    "target_resolution": "1080:1920",
+    "caption_y_pos": "ih-450",
+    "font_color": "black",
+    "bg_color": "white",
     "frame_filter": "split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop=iw:ih/2:0:ih/2,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
-      { "start": "00:00:55.400", "end": "00:00:57.400", "label": "THE_HOOK" },
-      { "start": "00:00:49.520", "end": "00:00:54.000", "label": "THE_CONTEXT" }
+      { "start": "00:00:55.400", "end": "00:01:05.000", "label": "THE_HOOK" },
+      { "start": "00:00:40.000", "end": "00:00:54.000", "label": "THE_CONTEXT" }
     ],
     "captions": [
-      { "start": 0.0, "end": 2.0, "text": "KANSAS ONLY 1%?! 😳" },
-      { "start": 2.0, "end": 4.5, "text": "THIS IS INSANE VALUE 🤯" },
-      { "start": 4.5, "end": 7.0, "text": "I’M TRUSTING THIS PICK 🙏" },
-      { "start": 7.0, "end": 9.5, "text": "COULD GO CRAZY 📈" }
+      { "start": 0.0, "end": 2.5, "text": "KANSAS ONLY 1%?! 😳" },
+      { "start": 2.5, "end": 5.0, "text": "THIS IS INSANE VALUE 🤯" },
+      { "start": 5.0, "end": 7.5, "text": "COULD GO CRAZY 📈" }
     ]
   }
 ]
