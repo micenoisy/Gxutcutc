@@ -1,60 +1,36 @@
-name: ⚡ AI Titan Agent - High Engagement
+name: 🎬 AI Production - Max Cache Mode
 on:
   push:
-    paths: [ 'master_config.json', 'analyze_config.json' ]
-
+    paths: [ 'master_config.json' ]
 jobs:
-  titan-process:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          lfs: true
 
-      - name: 📥 Smart Download (No Duplicates)
+      - name: Download Videos
         run: |
           pip install gdown
-          mkdir -p input output reports
-          # Logic: Use a Set to ensure each URL is only downloaded once
-          python3 -c "import gdown, json, os; \
-            configs = ['master_config.json', 'analyze_config.json']; \
-            urls = set(); \
-            for c in configs: \
-                if os.path.exists(c): \
-                    data = json.load(open(c)); \
-                    for j in data: \
-                        if 'gdrive_url' in j: urls.add(j['gdrive_url']); \
-                        if 'url' in j: urls.add(j['url']); \
-            [gdown.download(url, output='input/', quiet=False, fuzzy=True) for url in urls]"
+          mkdir -p input
+          python3 -c "import gdown, json, os; jobs = json.load(open('master_config.json')); [gdown.download(j['gdrive_url'], output='input/', quiet=False, fuzzy=True) for j in jobs if 'gdrive_url' in j]"
 
-      - name: 🐍 Setup Pro Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.9'
           cache: 'pip'
 
-      - name: 💎 Cache AI Models
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/whisper
-          key: whisper-titan-v1
+      - name: Install System Tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg git
 
-      - name: 🛠️ Install Titan Tools
-        run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg git
-          pip install openai-whisper moviepy yt-dlp gdown
-
-      - name: 🧠 Run Intelligence Phase
-        run: python3 scripts/analyzer.py
-
-      - name: 🎬 Run Production Phase
+      - name: Process Clips
         run: python3 scripts/processor.py
 
-      - name: 🚀 Deploy Viral Content
+      - name: Save Results
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git config --global user.name "Titan-AI-Agent"
-          git config --global user.email "titan@viralitypoly.ai"
-          git add output/ reports/
-          git commit -m "Titan Batch Processed #viralitypoly" || echo "No changes"
+          git config --global user.name "AI-Agent"
+          git config --global user.email "agent@github.com"
+          git add output/
+          git commit -m "Viral batch #viralitypoly" || echo "No changes"
           git push
