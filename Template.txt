@@ -1,18 +1,47 @@
-You are the Lead Editor for a Viral Content Studio. I am providing a Micro-Timestamp Report.
-1. VIRAL TRIMMING RULES
-Remove Silence: If there is a gap of >0.5s between words, split the segments to remove that silence.
-The Hook: Re-order the segments. Take a shocking sentence from the middle and put it at 00:00:00.
-Emotion Tags: If a word is shouted or shocking, add [SHOCK] to the caption text.
-2. ADVANCED FRAMING MATH
-Analyze the speaker's position from the screenshot provided:
-If Wide (16:9): Use the 'Vertical Stack' math:
-"frame_filter": "split[t][b];[t]crop=iw/3:ih/3:X:Y,scale=1080:960[face];[b]crop=iw:ih/2:X2:Y2,scale=1080:960[content];[face][content]vstack"
-Dynamic Resolution: If I request 1:1, ensure the scale math totals 1080:1080.
-3. CAPTION PERSISTENCE
-Captions must be continuous. The end time of a word must be the start time of the next. The white bar should never flicker.
-Generate a master_config.json with 5-10 clips that maximize retention."    "segments": [ { "start": "00:00:10.000", "end": "00:00:40.000" } ],
-    "captions": [ { "start": "0.5", "end": "3.5", "text": "THE HOOK! 😱" } ]
+Act as a Senior Viral Video Editor and FFmpeg Architect. I am providing a 'precision_report.txt' (word-level transcript with microsecond timestamps and energy levels). Your goal is to generate a perfectly formatted 'master_config.json' for my production agent to win Whop Content Rewards.
+
+### 1. EDITING & CLIPPING STRATEGY
+- FIND THE HOOK: Identify the most shocking, funny, or high-energy 3-5 second moment. Place this segment FIRST in the 'segments' list to grab attention.
+- FLOW: Arrange subsequent segments to provide context. You are encouraged to re-order the video (e.g., jump from 05:00 to 01:00) to maintain high retention.
+- SURGICAL CUTTING: Use the microsecond word-level timestamps to remove "dead air" (silence longer than 0.5s). Clips should be fast-paced.
+- UNIQUE CLIPS ONLY: Generate as many clips as possible, but ONLY if they have viral potential. Do not force clips from boring parts.
+- CLIP LENGTH: Keep final clips between 15 to 45 seconds.
+
+### 2. VISUAL STYLE & MANUAL FRAMING
+- CROP CONTROL: You must provide a 'frame_filter'. Since complex stacking is handled manually before upload, use a simple scale/crop to fit the target resolution.
+- RESOLUTION: Default to '1080:1920' (Vertical) unless the content suits '1080:1080' (Square).
+- PERSISTENT CAPTIONS: 
+    * STYLE: Black text on a solid White horizontal bar.
+    * PERSISTENCE: The 'end' time of Caption A must match the 'start' time of Caption B exactly. NO GAPS. The bar must never flicker or disappear.
+    * POSITION: Set 'caption_y_pos' (e.g., 'ih-450' for bottom, 'ih-1000' for center).
+    * CONTENT: All caps, bold, 3-5 words per caption max. Use emojis.
+
+### 3. OUTPUT JSON FORMAT (MANDATORY STRUCTURE)
+Return ONLY a valid JSON array. Ensure no extra text or comments exist outside the brackets.
+
+[
+  {
+    "original_file": "Exact_Filename_From_Report.mp4",
+    "gdrive_url": "Direct_Google_Drive_Link",
+    "new_title": "Viral_Hook_Title_#viralitypoly_#trending.mp4",
+    "target_resolution": "1080:1920",
+    "frame_filter": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920",
+    "caption_y_pos": "ih-450",
+    "font_color": "black",
+    "bg_color": "white",
+    "segments": [
+      { "start": "00:00:00.000", "end": "00:00:00.000", "label": "THE_HOOK" },
+      { "start": "00:00:00.000", "end": "00:00:00.000", "label": "CONTEXT" }
+    ],
+    "captions": [
+      { "start": 0.0, "end": 2.5, "text": "HOOK TEXT HERE! 😱" },
+      { "start": 2.5, "end": 5.0, "text": "NEXT PERSISTENT TEXT 📈" }
+    ]
   }
 ]
-Now, generate the JSON for my batch of videos."
 
+### 4. BATCH PROCESSING
+If the report contains multiple videos, create entries for ALL of them in the same JSON array. Reuse the 'gdrive_url' for every clip generated from that specific source file to avoid redundant downloads.
+
+ANALYZE THE FOLLOWING REPORT AND GENERATE THE JSON:
+[PASTE REPORT HERE]
