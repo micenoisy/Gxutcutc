@@ -2,7 +2,7 @@
   {
     "original_file": "CHICOF1POLYMARKET.mp4",
     "gdrive_url": "https://drive.google.com/file/d/1LCzmUP1bd7-cfe9l8pT0yZPr8Vg5K1dL/view?usp=drivesdk",
-    "new_title": "F1_Free_Money_Glitch_#viralitypoly_#f1_#trending.mp4",
+    "new_title": "F1_Free_Money_Glitch_#viralitpoly_#f1_#trending.mp4",
     "frame_filter": "split[t][b];[t]crop=400:400:0:680,scale=1080:960[face];[b]crop=1400:800:400:150,scale=1080:960[screen];[face][screen]vstack",
     "segments": [
       {
