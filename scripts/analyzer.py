@@ -1,25 +1,35 @@
-import whisper, json, os
+import whisper, subprocess, os, json
 
-model = whisper.load_model("base")
-os.makedirs("reports", exist_ok=True)
+def get_pro_metadata(path):
+    cmd = f"ffprobe -v error -select_streams v:0 -show_entries stream=width,height,avg_frame_rate,bit_rate -of json \"{path}\""
+    return json.loads(subprocess.check_output(cmd, shell=True).decode())['streams'][0]
 
-with open('analyze_config.json') as f:
-    links = json.load(f)
+print("🧠 Starting Titan Analysis...")
+model = whisper.load_model("medium") # Upgraded to Medium for better accuracy
 
-for idx, link in enumerate(links):
-    # Download logic
-    path = f"input/raw_{idx}.mp4"
-    print(f"📡 Analyzing Link: {link['url']}")
-    # gdown download here... (truncated for brevity)
-    
-    # Word-level transcription
-    result = model.transcribe(path, word_timestamps=True)
-    
-    report_path = f"reports/analysis_{idx}.txt"
-    with open(report_path, "w") as f:
-        f.write(f"--- MICRO-TIMESTAMP REPORT ---\n")
-        for seg in result['segments']:
-            f.write(f"\n[SEGMENT {seg['start']:.2f} -> {seg['end']:.2f}]\n")
-            for word in seg['words']:
-                f.write(f"{word['start']:.3f}|{word['end']:.3f}|{word['word']}\n")
-    print(f"✅ Micro-Report Saved: {report_path}")
+files = [f for f in os.listdir("input") if f.lower().endswith(('.mp4', '.mkv', '.mov'))]
+report_path = "reports/titan_analysis_report.txt"
+
+with open(report_path, "w") as r:
+    for f_name in files:
+        path = os.path.join("input", f_name)
+        meta = get_pro_metadata(path)
+        
+        print(f"🎙️ Deep Transcribing: {f_name}")
+        # Task='transcribe' with word_timestamps for micro-precision
+        result = model.transcribe(path, word_timestamps=True)
+        
+        r.write(f"VIDEO_ID: {f_name}\n")
+        r.write(f"PRO_SPECS: {meta['width']}x{meta['height']} @ {meta['avg_frame_rate']}fps\n")
+        r.write("--- SURGICAL TIMELINE (MICROSECONDS) ---\n")
+        
+        for s in result['segments']:
+            # Calculate 'Energy Score' based on average probability
+            energy = "HIGH" if s['avg_logprob'] > -0.5 else "LOW"
+            r.write(f"[{s['start']:.4f} -> {s['end']:.4f}] [ENERGY: {energy}] {s['text'].strip()}\n")
+            
+            # Silence Detection: If gap between segments > 1.5s, mark it as a cut point
+            # (Logic handled by LLM AI in next step)
+        r.write("\n" + "="*70 + "\n\n")
+
+print(f"✅ Titan Report Generated: {report_path}")
