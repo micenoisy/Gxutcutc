@@ -22,8 +22,8 @@ For Stacked Stream: split[t][b];[t]crop=iw:ih/2:0:0,scale=1080:960[face];[b]crop
 Ensure that for Captions, the end time of one caption is exactly the start time of the next to keep the horizontal white bar solid."
 
 4. CAPTION SYSTEM (BLACK ON WHITE BAR)
-Persistence Rule: A caption must stay on screen until the exact microsecond the next caption begins. There should be NO gaps in time between captions.
-Style: Short, punchy sentences (3-5 words max). Use emojis.
+Persistence Rule: A caption must stay on screen until the exact microsecond the next caption begins. There should be NO gaps in time between captions and must be captions will available in full clip.
+Style: Short, punchy sentences (3-5 words max). Use emojis and try for call to action for like or subscribe but keep this natural and not force audiance and in starting dont try for call to action.
 Text: All caps. Bold and high-energy.
 
 5. OUTPUT FORMAT
