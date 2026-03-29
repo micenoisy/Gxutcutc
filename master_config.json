@@ -1,70 +1,86 @@
 [
 {
-"original_file": "CHICOF1POLYMARKET.mp4",
-"gdrive_url": "https://drive.google.com/file/d/1LCzmUP1bd7-cfe9l8pT0yZPr8Vg5K1dL/view?usp=drivesdk",
-"new_title": "F1_Free_Money_Glith_#viralitypoly_#trending.mp4",
+"original_file": "I_Tried_Affiliate_Marketing_for_48_Hours_Real_Results_COPY_ME_720P.mp4",
+"gdrive_url": "https://drive.google.com/file/d/1_bQcWtHTEw19HNGrKqjIA2K-hPZ8m2HI/view?usp=drivesdk",
+"new_title": "48_Hour_Affiliate_Challenge_#viralitypoly_#trending.mp4",
 "target_resolution": "1080:1920",
 "frame_filter": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920",
 "caption_y_pos": "h-450",
 "font_color": "black",
 "bg_color": "white",
 "segments": [
-{ "start": "00:00:25.060", "end": "00:00:27.880", "label": "THE_HOOK" },
-{ "start": "00:00:00.000", "end": "00:00:03.020", "label": "CONTEXT_1" },
-{ "start": "00:00:03.260", "end": "00:00:05.640", "label": "CONTEXT_2" },
-{ "start": "00:00:12.480", "end": "00:00:14.740", "label": "PAYOFF" }
+{ "start": "00:00:13.660", "end": "00:00:16.760", "label": "THE_HOOK" },
+{ "start": "00:19:30.000", "end": "00:19:35.120", "label": "THE_RESULT" },
+{ "start": "00:00:06.380", "end": "00:00:08.680", "label": "CONTEXT_1" },
+{ "start": "00:00:09.360", "end": "00:00:10.220", "label": "CONTEXT_2" },
+{ "start": "00:00:10.700", "end": "00:00:13.660", "label": "CONTEXT_3" },
+{ "start": "00:00:31.360", "end": "00:00:35.440", "label": "CALL_TO_ACTION" }
 ],
 "captions": [
-{ "start": 0.0, "end": 2.82, "text": "AT $1,000 MAKES 1.5K! 💰" },
-{ "start": 2.82, "end": 4.32, "text": "WANT FREE MONEY? 💸" },
-{ "start": 4.32, "end": 5.84, "text": "BUY IN ON POLYMARKET! 📈" },
-{ "start": 5.84, "end": 8.22, "text": "WHO TAKES F1 CHAMPION? 🏎️" },
-{ "start": 8.22, "end": 10.48, "text": "MERCEDES ARE COOKING! 🔥" }
+{ "start": 0.0, "end": 1.5, "text": "HOW MUCH I MADE 💸" },
+{ "start": 1.5, "end": 3.1, "text": "IN AFFILIATE MARKETING! 🚀" },
+{ "start": 3.1, "end": 5.5, "text": "$13,576 PROFIT! 🤯" },
+{ "start": 5.5, "end": 8.22, "text": "RS. 49,000 NET PROFIT! 💰" },
+{ "start": 8.22, "end": 10.52, "text": "IN JUST 48 HOURS! ⏳" },
+{ "start": 10.52, "end": 11.38, "text": "I BUILT A LANDING PAGE 💻" },
+{ "start": 11.38, "end": 14.34, "text": "SET UP EMAILS & RAN ADS! 📈" },
+{ "start": 14.34, "end": 16.5, "text": "COPY MY EXACT SYSTEM! 🐑" },
+{ "start": 16.5, "end": 18.42, "text": "COMMENT 'SYSTEM' FOR DETAILS! 👇" }
 ]
 },
 {
-"original_file": "ChicoFilo -part 1- G2 vs BLG League Of Legends - WHAT G2 isnt favorites? mp4.mp4",
-"gdrive_url": "https://drive.google.com/file/d/15GsEX4bkCPoPU1t6p6TtTwKMsB3OGDbq/view?usp=drivesdk",
-"new_title": "G2_Are_Underdogs_#viralitypoly_#leagueoflegends.mp4",
+"original_file": "I_Tried_Affiliate_Marketing_for_48_Hours_Real_Results_COPY_ME_720P.mp4",
+"gdrive_url": "https://drive.google.com/file/d/1_bQcWtHTEw19HNGrKqjIA2K-hPZ8m2HI/view?usp=drivesdk",
+"new_title": "YouTube_Ads_Secret_Hack_#viralitypoly_#marketing.mp4",
 "target_resolution": "1080:1920",
 "frame_filter": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920",
 "caption_y_pos": "h-450",
 "font_color": "black",
 "bg_color": "white",
 "segments": [
-{ "start": "00:00:15.000", "end": "00:00:20.980", "label": "THE_HOOK" },
-{ "start": "00:00:24.460", "end": "00:00:26.760", "label": "THE_PROOF" },
-{ "start": "00:00:02.940", "end": "00:00:06.180", "label": "THE_OPINION" }
+{ "start": "00:03:31.200", "end": "00:03:34.680", "label": "THE_HOOK" },
+{ "start": "00:03:35.200", "end": "00:03:38.260", "label": "CONTEXT_1" },
+{ "start": "00:03:46.160", "end": "00:03:47.900", "label": "EXAMPLE_SETUP" },
+{ "start": "00:03:47.900", "end": "00:03:52.460", "label": "THE_STRATEGY" },
+{ "start": "00:03:52.460", "end": "00:03:54.780", "label": "CALL_TO_ACTION" }
 ],
 "captions": [
-{ "start": 0.0, "end": 2.5, "text": "28 CENTS G2 VS BLG?! 🤯" },
-{ "start": 2.5, "end": 5.98, "text": "WHY ARE THEY 28 CENTS?! 📉" },
-{ "start": 5.98, "end": 8.28, "text": "THEY SWEPT GEN G! 🧹" },
-{ "start": 8.28, "end": 10.0, "text": "TO WIN THE WHOLE THING... 🏆" },
-{ "start": 10.0, "end": 11.52, "text": "I THINK THEY'RE FAVORITES! 🔥" }
+{ "start": 0.0, "end": 1.8, "text": "YOUTUBE ADS HACK! 🚨" },
+{ "start": 1.8, "end": 3.48, "text": "WHY ARE THEY BEST? 🤔" },
+{ "start": 3.48, "end": 6.54, "text": "YOU CAN TARGET EXACT CHANNELS! 🎯" },
+{ "start": 6.54, "end": 8.28, "text": "HAVE A WEIGHT LOSS PRODUCT? 🏋️" },
+{ "start": 8.28, "end": 11.0, "text": "RUN ADS ONLY ON... 👀" },
+{ "start": 11.0, "end": 12.84, "text": "WEIGHT LOSS VIDEOS! 🥗" },
+{ "start": 12.84, "end": 15.16, "text": "WOULD YOU TRY THIS? COMMENT! 💬" }
 ]
 },
 {
-"original_file": "ChicoFilo thoughts on March Madness.mp4",
-"gdrive_url": "https://drive.google.com/file/d/1UXkbvR68Xgtp6dve4JItcNaftPq1-q8S/view?usp=drivesdk",
-"new_title": "March_Madness_Cheat_Code_#viralitypoly_#collegehoops.mp4",
+"original_file": "I_Tried_Affiliate_Marketing_for_48_Hours_Real_Results_COPY_ME_720P.mp4",
+"gdrive_url": "https://drive.google.com/file/d/1_bQcWtHTEw19HNGrKqjIA2K-hPZ8m2HI/view?usp=drivesdk",
+"new_title": "AI_Video_Ad_Creation_#viralitypoly_#artificialintelligence.mp4",
 "target_resolution": "1080:1920",
 "frame_filter": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920",
 "caption_y_pos": "h-450",
 "font_color": "black",
 "bg_color": "white",
 "segments": [
-{ "start": "00:01:21.440", "end": "00:01:23.440", "label": "THE_HOOK" },
-{ "start": "00:01:24.560", "end": "00:01:27.320", "label": "CONTEXT_1" },
-{ "start": "00:01:28.200", "end": "00:01:29.840", "label": "THE_SHOCK" },
-{ "start": "00:00:14.560", "end": "00:00:18.660", "label": "THE_PAYOFF" }
+{ "start": "00:13:12.060", "end": "00:13:17.140", "label": "THE_HOOK" },
+{ "start": "00:12:47.580", "end": "00:12:51.520", "label": "CONTEXT_1" },
+{ "start": "00:12:52.400", "end": "00:12:53.540", "label": "CONTEXT_2" },
+{ "start": "00:12:59.580", "end": "00:13:02.800", "label": "CONTEXT_3" },
+{ "start": "00:13:07.600", "end": "00:13:12.060", "label": "CONTEXT_4" },
+{ "start": "00:13:17.140", "end": "00:13:19.980", "label": "PAYOFF" }
 ],
 "captions": [
-{ "start": 0.0, "end": 2.0, "text": "FLORIDA WON LAST YEAR! 🐊" },
-{ "start": 2.0, "end": 4.76, "text": "WILL THEY ADVANCE AGAIN? 🏀" },
-{ "start": 4.76, "end": 6.4, "text": "WAIT WHAT?! 🤯" },
-{ "start": 6.4, "end": 8.4, "text": "ONLY 10 CENTS A SHARE! 🪙" },
-{ "start": 8.4, "end": 10.5, "text": "TO MAKE FINAL FOUR! 📈" }
+{ "start": 0.0, "end": 2.5, "text": "HEYGEN WROTE THE SCRIPT 🤖" },
+{ "start": 2.5, "end": 5.08, "text": "ENTIRE VIDEO IN 15 MINS! 🤯" },
+{ "start": 5.08, "end": 7.5, "text": "WE USED TWO AI TOOLS 🛠️" },
+{ "start": 7.5, "end": 9.02, "text": "CHATGPT & HEYGEN! 🧠" },
+{ "start": 9.02, "end": 10.16, "text": "WROTE WITH CHATGPT 📝" },
+{ "start": 10.16, "end": 13.38, "text": "THEN SWITCHED TO HEYGEN! 🔄" },
+{ "start": 13.38, "end": 15.5, "text": "CHANGED OUR AVATAR 👤" },
+{ "start": 15.5, "end": 17.84, "text": "AND HIT GENERATE! ⚡" },
+{ "start": 17.84, "end": 20.68, "text": "RATE THIS AI 1-10 BELOW! 👇" }
 ]
 }
 ]
