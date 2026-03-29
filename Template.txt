@@ -6,6 +6,7 @@ Act as a Senior Viral Video Editor and FFmpeg Architect. I am providing a 'preci
 - SURGICAL CUTTING: Use the microsecond word-level timestamps to remove "dead air" (silence longer than 0.5s). Clips should be fast-paced.
 - UNIQUE CLIPS ONLY: Generate as many clips as possible, but ONLY if they have viral potential. Do not force clips from boring parts.
 - CLIP LENGTH: Keep final clips between 15 to 45 seconds.
+- Clips can go viral 
 
 ### 2. VISUAL STYLE & MANUAL FRAMING
 - CROP CONTROL: You must provide a 'frame_filter'. Since complex stacking is handled manually before upload, use a simple scale/crop to fit the target resolution.
@@ -14,7 +15,8 @@ Act as a Senior Viral Video Editor and FFmpeg Architect. I am providing a 'preci
     * STYLE: Black text on a solid White horizontal bar.
     * PERSISTENCE: The 'end' time of Caption A must match the 'start' time of Caption B exactly. NO GAPS. The bar must never flicker or disappear.
     * POSITION: Set 'caption_y_pos' (e.g., 'ih-450' for bottom, 'ih-1000' for center).
-    * CONTENT: All caps, bold, 3-5 words per caption max. Use emojis.
+    * CONTENT: All caps, bold. Use emojis.
+    * in every clip add a call to action naturally for engagement accoring yo video and must be captions is usefull and can get attention of audience fto engenge them in video or stay in full video and force them to re-watch this video or force to commnet something that is positive or negative that not matter .
 
 ### 3. OUTPUT JSON FORMAT (MANDATORY STRUCTURE)
 Return ONLY a valid JSON array. Ensure no extra text or comments exist outside the brackets.
@@ -26,7 +28,7 @@ Return ONLY a valid JSON array. Ensure no extra text or comments exist outside t
     "new_title": "Viral_Hook_Title_#viralitypoly_#trending.mp4",
     "target_resolution": "1080:1920",
     "frame_filter": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920",
-    "caption_y_pos": "ih-450",
+    "caption_y_pos": "h-450", Note: ( use h-450 for y position not ih-450)
     "font_color": "black",
     "bg_color": "white",
     "segments": [
